@@ -86,7 +86,6 @@ import {
   VListItemSubtitle,
   VListItemAction,
   VCheckbox,
-  VBtn,
   VCol,
   VRow,
   VContainer,
@@ -106,7 +105,6 @@ export default defineComponent({
     VListItemSubtitle,
     VListItemAction,
     VCheckbox,
-    VBtn,
     VCol,
     VRow,
     VContainer,
@@ -147,11 +145,11 @@ export default defineComponent({
     };
 
     const nextStep = () => {
-      alert('kommer snart');
+      router.push('/foodWaste');
     };
 
     const previousStep = () => {
-      router.push('/transportComponent');
+      router.push('/elUse');
     };
 
     return {
