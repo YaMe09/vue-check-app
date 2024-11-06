@@ -159,6 +159,7 @@ export default defineComponent({
 <style scoped>
 .v-container {
   padding: 0;
+  height: 50;
 }
 .genbruge {
   height: 80vh;

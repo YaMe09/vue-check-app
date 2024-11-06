@@ -58,20 +58,17 @@
       <br/>
       <br/>
       <!-- Award Badge -->
-      <v-col cols="12" md="4" sm="6" class="award-badge" justify="center">
-        <v-btn size="x-large" :style="{ backgroundColor: '#8981A8', borderRadius: '18px', width: '100%' }">
-          <img class="bg-img" src="../images/100.svg" /> &nbsp;
-          <img src="../images/fa-solid_award.svg" />
-        </v-btn>
-      </v-col>
     </v-container>
+    <PointDisplay :points="totalPoints" />
+    <CalculatePoints :selectedItems="selectedItems" @update:points="updatePoints" />
   </v-app>
 </template>
-
 
 <script>
 import { defineComponent, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import CalculatePoints from './CalculatePoints.vue';
+import PointDisplay from './PointDisplay.vue';
 import NavComponent from './NavComponent.vue';
 import { VList, VListItem, VListItemTitle, VListItemSubtitle, VListItemAction, VCheckbox, VBtn, VCol, VRow, VContainer, VApp, VSpacer } from 'vuetify/components';
 
@@ -79,9 +76,10 @@ export default defineComponent({
   name: 'TransportComponent',
   components: {
     NavComponent,
+    CalculatePoints,
+    PointDisplay,
     VList,
     VListItem,
-
     VListItemTitle,
     VListItemSubtitle,
     VListItemAction,
@@ -110,7 +108,7 @@ export default defineComponent({
       selectedOption.value = selectedOption.value === optionId ? null : optionId;
     };
 
-     const optionStyle = (optionId) => {
+    const optionStyle = (optionId) => {
       if (selectedOption.value === optionId) {
         switch (optionId) {
           case '1':
@@ -132,6 +130,17 @@ export default defineComponent({
         return { backgroundColor: '#D9D9D9' };
       }
     };
+
+    const selectedItems = computed(() => {
+      return transportSchedule.value.filter(option => selectedOption.value === option.id);
+    });
+
+    const totalPoints = ref(0);
+
+    const updatePoints = (points) => {
+      totalPoints.value = points;
+    };
+
     const nextStep = () => {
       alert("kommer snart");
       // this.$router.push('/nextRoute');
@@ -158,6 +167,9 @@ export default defineComponent({
       selectedOption,
       selectOption,
       optionStyle,
+      selectedItems,
+      totalPoints,
+      updatePoints,
       nextStep,
       previousStep,
       chooseAll
@@ -167,29 +179,25 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.v-container{
+.v-container {
   padding: 0;
 }
 .transport {
   height: 80vh;
 }
-
 .question {
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 24px;
 }
-
 .selected {
   background-color: #4CAF50;
   color: white;
 }
-
 .disabled {
   opacity: 0.5;
   pointer-events: none;
 }
-
 .award-badge {
   display: flex;
   align-items: center;
@@ -197,7 +205,6 @@ export default defineComponent({
   margin: 20px auto;
   border-radius: 18px;
   opacity: 0.9px;
-
 }
 .award-badge .v-btn {
   display: flex;
@@ -205,25 +212,23 @@ export default defineComponent({
   align-items: center;
   width: 100%; /* Gør knappen fuld bredde */
 }
-
 .v-list-item-subtitle {
   font-size: 16px;
-  color: red
+  color: red;
 }
-.v-list-item-title{
+.v-list-item-title {
   font-size: 20px;
   color: black;
   margin-top: 5px;
 }
-.v-list-item-action{
+.v-list-item-action {
   width: 0;
-  height:0;
+  height: 0;
 }
-.v-list-item--density-default.v-list-item--one-line{
+.v-list-item--density-default.v-list-item--one-line {
   padding: 15px;
   margin-top: 8px;
-  margin-bottom: 12px ;
+  margin-bottom: 12px;
   justify-content: center;
 }
-
 </style>
