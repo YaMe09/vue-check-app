@@ -6,6 +6,10 @@ import InfoComponent from '@/components/InfoComponent.vue';
 import GenbrugeComponent from '@/components/GenbrugeComponent.vue';
 import CalculatePoints from '@/components/CalculatePoints.vue';
 import PointDisplay from '@/components/PointDisplay.vue';
+import CheckList from './components/CheckList.vue';
+import FoodWaste from './components/FoodWaste.vue';
+import ElUse from './components/ElUse.vue';
+import ArrowComponent from './components/ArrowComponent.vue';
 
 import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
@@ -27,6 +31,10 @@ const router = createRouter({
     { path: '/pointDisplay', name: 'PointDisplay', component: PointDisplay },
     { path: '/genbrugeComponent', name: 'GenbrugeComponent', component: GenbrugeComponent },
     { path: '/info', name: 'Info', component: InfoComponent },
+    { path: '/checkList', name: 'CheckList', component: CheckList},
+    { path: '/foodWaste', name: 'FoodWaste', component: FoodWaste},
+    { path: '/elUse', name: 'ElUse', component: ElUse},
+    { path: '/arrowComponent', name: 'ArrowComponent', component: ArrowComponent},
   ],
 });
 

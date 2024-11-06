@@ -142,7 +142,7 @@ export default defineComponent({
     };
 
     const nextStep = () => {
-      alert("kommer snart");
+      router.push('/elUse');
       // this.$router.push('/nextRoute');
     };
 

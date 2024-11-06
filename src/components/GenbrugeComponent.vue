@@ -14,9 +14,9 @@
         md="8"
         lg="4"
         align="center"
-        :style="{ backgroundColor: '#8981A8', borderRadius: '25px', padding: '24px', width: '485px', marginBottom: '24px' }"
+        :style="{ backgroundColor: '#8FCACA', borderRadius: '25px', padding: '24px', width: '485px', marginBottom: '24px' }"
       >
-        <v-list :style="{ backgroundColor: '#8981A8', flexDirection: 'column', alignItems: 'center' }">
+        <v-list :style="{ backgroundColor: '#8FCACA', flexDirection: 'column', alignItems: 'center' }">
           <v-list-item-group>
             <v-list-item
               v-for="option in transportSchedule"
@@ -73,7 +73,6 @@ import {
   VListItemSubtitle,
   VListItemAction,
   VCheckbox,
-  VBtn,
   VCol,
   VRow,
   VContainer,
@@ -93,7 +92,6 @@ export default defineComponent({
     VListItemSubtitle,
     VListItemAction,
     VCheckbox,
-    VBtn,
     VCol,
     VRow,
     VContainer,
@@ -134,11 +132,11 @@ export default defineComponent({
     };
 
     const nextStep = () => {
-      alert('kommer snart');
+      router.push('/foodWaste');
     };
 
     const previousStep = () => {
-      router.push('/transportComponent');
+      router.push('/elUse');
     };
 
     return {
