@@ -34,7 +34,7 @@
       <br/>
     <v-row align="center" justify="center">
       <v-col cols="12" class="text-center">
-        <v-btn rounded="xl" size="x-large" @click="goBack" class="back-button" block :style="{border:'5px solid #3E7A00'}">Tilbage</v-btn><br/>
+        <v-btn rounded="xl" size="x-large" @click="goBack" class="back-button" block outlined  :style="{border:'5px solid #3E7A00'}">Tilbage</v-btn><br/>
         <v-btn rounded="xl" size="x-large"  @click="goHome" class="home-button" block :style="{background:'#3E7A00'}">Startside</v-btn>
       </v-col>
     </v-row>
@@ -53,7 +53,7 @@ export default {
     const router = useRouter();
 
     const goBack = () => {
-      router.push('#');
+      router.push('/foodWaste');
     };
 
     const goHome = () => {

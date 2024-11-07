@@ -1,6 +1,6 @@
 <template>
-  <v-container class="nav" :style="{ backgroundColor: '#E9E5E5' }"
-    ><br />
+  <v-container class="nav" :style="{ backgroundColor: '#E9E5E5', padding: '0', margin:'0' }">
+    <br />
     <v-toolbar app :style="{ backgroundColor: '#E9E5E5' }">
       <v-col class="d-flex align-center">
         <router-link to="#">
@@ -23,7 +23,7 @@
     </v-toolbar>
 
     <br />
-    <div class="anden-nav">
+    <v-container class="anden-nav">
       <router-link to="/transportComponent" @click="setActive('transportComponent')">
          <img :class="{ active: activeImage === 'transportComponent' }" src="../images/transport.svg" />
       </router-link>
@@ -50,7 +50,7 @@
           src="../images/Madspile.svg"
         />
       </router-link>
-    </div>
+    </v-container>
   </v-container>
 </template>
 
@@ -114,7 +114,7 @@ export default defineComponent({
 
   .active {
     transform: scale(1.2);
-    border: 5px solid #e4e5e4;
+    border: 5px solid #D3BE03;
     box-shadow: 0 0 10px rgba(189, 185, 185, 0.5);
   }
 </style>

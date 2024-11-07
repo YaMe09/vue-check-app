@@ -218,4 +218,12 @@ export default defineComponent({
   margin-bottom: 12px;
   justify-content: center;
 }
+.award-badge[data-v-db81f2f0]{
+  margin: 0;
+}
+.award-badge{
+  background-color: #8FCACA;
+  border-radius: 25px;
+  opacity: 0.9;
+}
 </style>

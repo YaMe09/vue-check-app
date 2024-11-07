@@ -1,7 +1,7 @@
 <template>
   <NavComponent />
   <v-app class="energy-consumption" id="energy-consumption">
-    <v-container fluid fill-height :style="{ backgroundColor: '#E9E5E5', width: '100%', padding: '25px' }">
+    <v-container fluid fill-height :style="{ backgroundColor: '#E9E5E5' }">
       <v-col cols="12" md="8" lg="4" class="text-center">
         <h2 class="question">Hvordan har dit El-forbrug været?</h2>
       </v-col>
@@ -17,12 +17,13 @@
           :checklistItems="checklistItems"
           :selectedItems="selectedItems"
           @update:selectedItems="updateSelectedItems"
+
         />
       </v-col>
 
       <ArrowComponent nextRoute="/GenbrugeComponent" previousRoute="/TransportComponent" />
 
-      <PointDisplay :points="totalPoints" />
+      <PointDisplay :points="totalPoints" :style="{background: '#1E7F85', borderRadius:'20px'}" />
     </v-container>
   </v-app>
 </template>
@@ -74,9 +75,7 @@ export default {
 .v-container {
   justify-content: center;
   margin: 10px;
-  background-color: #1E7F85;
-  padding: 20px;
-  border-radius: 10px;
+
 }
 
 .energy-consumption {
@@ -116,4 +115,23 @@ export default {
 .v-label {
   color: black;
 }
+.v-list, .v-theme--light, .v-list--density-default, .v-list--one-line{
+  width:100%;
+  margin-bottom: 24px;
+}
+.v-list-item__content{
+  overflow: none;
+}
+div[data-v-617dcb71]{
+ background:#1E7F85;
+}
+.v-list {
+  overflow: none;
+  padding: 0;
+}
+.v-list-item{
+  display: flex;
+}
+
+
 </style>

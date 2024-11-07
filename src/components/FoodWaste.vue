@@ -1,7 +1,7 @@
 <template>
   <NavComponent />
   <v-app class="foodwaste" id="foodwaste">
-    <v-container fluid fill-height :style="{ backgroundColor: '#E9E5E5', width: '100%', padding: '25px' }">
+    <v-container fluid fill-height :style="{ backgroundColor: '#E9E5E5', padding: '25px' }">
       <v-col cols="12" md="8" lg="4" class="text-center">
         <h2 class="question">Hvordan har dit madspild været?</h2>
       </v-col>
@@ -138,5 +138,13 @@ export default {
 
 .v-label {
   color: black;
+}
+.v-container[data-v-6c44f5ed] {
+  background: #E59182;
+ padding: 0;
+}
+div[data-v-617dcb71] {
+  background: #E59182;
+  padding: 0;
 }
 </style>
