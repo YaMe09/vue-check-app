@@ -228,4 +228,7 @@ export default defineComponent({
   margin-bottom: 12px;
   justify-content: center;
 }
+.award-badge[data-v-30caf185]{
+  margin: 0;
+}
 </style>
