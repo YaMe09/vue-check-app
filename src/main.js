@@ -23,7 +23,7 @@ const router = createRouter({
     { path: '/transportComponent', name: 'TransportComponent', component: TransportComponent },
     { path: '/genbrugeComponent', name: 'GenbrugeComponent', component: GenbrugeComponent },
     { path: '/info', name: 'Info', component: InfoComponent },
-    {path: '/scoreComponent', name: 'scoreComponent', component: ScoreComponent,}
+    {path: '/scoreComponent', name: 'scoreComponent', component: ScoreComponent },
   ],
 });
 
