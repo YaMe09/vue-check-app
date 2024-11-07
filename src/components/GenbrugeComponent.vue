@@ -71,7 +71,6 @@
 import { defineComponent, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import NavComponent from './NavComponent.vue';
-import CalculatePoints from './CalculatePoints.vue';
 import PointDisplay from './PointDisplay.vue';
 import {
   VList,
@@ -91,7 +90,6 @@ export default defineComponent({
   name: 'GenbrugeComponent',
   components: {
     NavComponent,
-    CalculatePoints,
     PointDisplay,
     VList,
     VListItem,

@@ -6,6 +6,25 @@
         <h2 class="question">Hvordan har dit madspild været?</h2>
       </v-col>
 
+
+      <v-col
+        cols="12"
+        md="8"
+        lg="4"
+        align="center"
+        :style="{ backgroundColor: '#E59182', borderRadius: '25px', padding: '24px', width: '485px', marginBottom: '24px' }"
+      >
+        <CheckList
+          :checklistItems="checklistItems"
+          :selectedItems="selectedItems"
+          @update:selectedItems="updateSelectedItems"
+        />
+      </v-col>
+
+      <ArrowComponent nextRoute="/scoreComponent" previousRoute="/genbrugeComponent" />
+
+      <PointDisplay :points="totalPoints" />
+
       <CheckList
         :style="{ backgroundColor: '', flexDirection: 'column', alignItems: 'center' }"
         :checklistItems="checklistItems"
@@ -20,6 +39,7 @@
       <PointDisplay :points="totalPoints" />
 
 
+
     </v-container>
   </v-app>
 </template>
@@ -27,7 +47,6 @@
 <script>
 import CheckList from './CheckList.vue';
 import NavComponent from './NavComponent.vue';
-import CalculatePoints from './CalculatePoints.vue';
 import PointDisplay from './PointDisplay.vue';
 import ArrowComponent from './ArrowComponent.vue';
 
@@ -35,33 +54,35 @@ export default {
   components: {
     PointDisplay,
     CheckList,
-    CalculatePoints,
     NavComponent,
-    ArrowComponent
+    ArrowComponent,
   },
   data() {
     return {
       checklistItems: [
-        { name: "Køb lokale råvarer", score: 100 },
-        { name: "Spis vegetarisk", score: 200 },
-        { name: "Undgå madspild", score: 150 },
-        { name: "Køb økologiske produkter", score: 75 },
-        { name: "Lav hjemmelavet mad frem for færdigretter", score: 50 },
-        { name: "Brug genanvendelige emballager", score: 100 },
-        { name: "Drik vand fra hanen i stedet for flaskevand", score: 50 },
-        { name: "Reducer kødindtag", score: 150 },
+        { id: 1, name: "Køb lokale råvarer", score: 100 },
+        { id: 2, name: "Spis vegetarisk", score: 200 },
+        { id: 3, name: "Undgå madspild", score: 150 },
+        { id: 4, name: "Køb økologiske produkter", score: 75 },
+        { id: 5, name: "Lav hjemmelavet mad frem for færdigretter", score: 50 },
+        { id: 6, name: "Brug genanvendelige emballager", score: 100 },
+        { id: 7, name: "Drik vand fra hanen i stedet for flaskevand", score: 50 },
+        { id: 8, name: "Reducer kødindtag", score: 150 },
       ],
-      selectedItems: [], // User-selected list
-      totalPoints: 0, // Total points
     };
+  },
+  computed: {
+    selectedItems() {
+      return this.$store.state.selectedItems; // Get selected items from Vuex state
+    },
+    totalPoints() {
+      return this.$store.getters.getTotalPoints; // Get total points from Vuex getter
+    },
   },
   methods: {
     updateSelectedItems(newSelectedItems) {
-      this.selectedItems = newSelectedItems;
-    },
-    emitUpdatePoints(newPoints) {
-      this.totalPoints = newPoints;
-      this.$emit('update:points', newPoints);
+      this.$store.dispatch('updateSelectedItems', newSelectedItems); // Update selected items in Vuex
+      this.$store.dispatch('updateTotalPoints'); // Recalculate total points after updating selected items
     },
 
   },
@@ -69,25 +90,29 @@ export default {
 </script>
 
 <style scoped>
-.foodwaste {
-  background-color: #E9E5E5;
-  width: 100%;
-  padding: 0;
-}
 .v-container {
   justify-content: center;
   margin: 10px;
-  background-color: #E59182;
+  background-color: #1E7F85;
   padding: 20px;
   border-radius: 10px;
 
 }
 
+.foodwaste {
+  background-color: #E9E5E5;
+  width: 100%;
+  padding: 0;
+
+
+
+}
+
 .question {
   font-weight: bold;
-  color: black;
   margin-top: 10px;
   margin-bottom: 24px;
+  color: black;
 }
 
 .checklist-card {
@@ -99,7 +124,7 @@ export default {
 }
 
 .checklist-card.selected {
-  background-color:  #4caf50;
+  background-color: #4caf50;
   color: white;
 }
 
@@ -110,6 +135,7 @@ export default {
 .custom-checkbox input:checked ~ .v-input__control .v-input__slot {
   background-color: #a6c9a8;
 }
+
 .v-label {
   color: black;
 }
