@@ -58,9 +58,10 @@
       <br/>
       <br/>
       <!-- Award Badge -->
-    </v-container>
-    <PointDisplay :points="totalPoints" />
+      <PointDisplay :points="totalPoints" />
     <CalculatePoints :selectedItems="selectedItems" @update:points="updatePoints" />
+    </v-container>
+
   </v-app>
 </template>
 
@@ -70,7 +71,7 @@ import { useRouter } from 'vue-router';
 import CalculatePoints from './CalculatePoints.vue';
 import PointDisplay from './PointDisplay.vue';
 import NavComponent from './NavComponent.vue';
-import { VList, VListItem, VListItemTitle, VListItemSubtitle, VListItemAction, VCheckbox, VBtn, VCol, VRow, VContainer, VApp, VSpacer } from 'vuetify/components';
+import { VList, VListItem, VListItemTitle, VListItemSubtitle, VListItemAction, VCheckbox, VCol, VRow, VContainer, VApp, VSpacer } from 'vuetify/components';
 
 export default defineComponent({
   name: 'TransportComponent',
@@ -84,7 +85,6 @@ export default defineComponent({
     VListItemSubtitle,
     VListItemAction,
     VCheckbox,
-    VBtn,
     VCol,
     VRow,
     VContainer,
