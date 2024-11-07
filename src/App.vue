@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="app">
     <v-container v-if="showWelcome" class="forside" fill-height>
       <v-row align="center" justify="center">
         <v-col>
@@ -50,9 +50,11 @@ export default defineComponent({
   background-image: url('./images/forside.svg');
   background-size: cover;
   background-position: center;
+  margin-top: 50px;
 }
 
 h1, p {
   color: black;
 }
+
 </style>
