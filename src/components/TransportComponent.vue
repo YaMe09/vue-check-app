@@ -67,7 +67,6 @@
 <script>
 import { defineComponent, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import CalculatePoints from './CalculatePoints.vue';
 import PointDisplay from './PointDisplay.vue';
 import NavComponent from './NavComponent.vue';
 import { VList, VListItem, VListItemTitle, VListItemSubtitle, VListItemAction, VCheckbox, VBtn, VCol, VRow, VContainer, VApp, VSpacer } from 'vuetify/components';
@@ -76,7 +75,6 @@ export default defineComponent({
   name: 'TransportComponent',
   components: {
     NavComponent,
-    CalculatePoints,
     PointDisplay,
     VList,
     VListItem,

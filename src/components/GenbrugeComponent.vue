@@ -2,7 +2,7 @@
   <NavComponent />
   <v-app class="genbruge" id="genbruge">
     <v-container fluid fill-height :style="{backgroundColor:'#E9E5E5', width: '100%', padding: '24px'}">
-      
+
       <!-- Heading -->
       <v-col cols="12" md="8" lg="4" class="text-center">
         <h2 class="question">Hvordan har dine indkøb været?</h2>
@@ -64,7 +64,6 @@
 import { defineComponent, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import NavComponent from './NavComponent.vue';
-import CalculatePoints from './CalculatePoints.vue';
 import PointDisplay from './PointDisplay.vue';
 import {
   VList,
@@ -84,7 +83,6 @@ export default defineComponent({
   name: 'GenbrugeComponent',
   components: {
     NavComponent,
-    CalculatePoints,
     PointDisplay,
     VList,
     VListItem,
