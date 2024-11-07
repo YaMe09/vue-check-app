@@ -59,12 +59,6 @@
       <br/>
       <br/>
       <!-- Award Badge -->
-      <v-col cols="12" md="4" sm="6" class="award-badge" justify="center">
-        <v-btn size="x-large" :style="{ backgroundColor: '#8FCACA', borderRadius: '18px', width: '100%' }">
-          <img class="bg-img" src="../images/100.svg" /> &nbsp;
-          <img src="../images/fa-solid_award.svg" />
-        </v-btn>
-      </v-col>
 
        <PointDisplay :points="totalPoints" />
        <CalculatePoints :selectedItems="selectedItems" @update:points="updatePoints" />
