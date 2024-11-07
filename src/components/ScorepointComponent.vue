@@ -1,7 +1,5 @@
 <template>
   <v-container>
-    <br/>
-    <br/><br/><br/><br/>
     <h1 class="score-title">Dagens score</h1>
 
     <div class="score-value">400</div>
