@@ -54,9 +54,16 @@
           </v-col>
         </v-row>
       </v-col>
+
+      <br/>
+      <br/>
+      <br/>
+      <!-- Award Badge -->
+      <PointDisplay :points="totalPoints" />
+      <CalculatePoints :selectedItems="selectedItems" @update:points="updatePoints" />
+
+
     </v-container>
-    <PointDisplay :points="totalPoints" />
-    <CalculatePoints :selectedItems="selectedItems" @update:points="updatePoints" />
   </v-app>
 </template>
 

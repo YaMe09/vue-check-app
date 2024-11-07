@@ -3,7 +3,7 @@
     <v-container v-if="showWelcome" class="forside" fill-height>
       <v-row align="center" justify="center">
         <v-col>
-          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
           <h1 :style="{ fontWeight: '700' }">Velkommen</h1>
           <br />
           <br /><br /><br /><br /><br /><br />

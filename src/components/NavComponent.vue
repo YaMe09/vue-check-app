@@ -43,7 +43,7 @@
         />
       </router-link>
 
-      <router-link to="/foodWaste" @click="setActive('')">
+      <router-link to="/foodWaste" @click="setActive('foodWaste')">
         <img
           :class="{ active: activeImage === 'foodWaste' }"
           @click="setActive('foodWaste')"

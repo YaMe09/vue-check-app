@@ -6,6 +6,7 @@
         <h2 class="question">Hvordan har dit madspild været?</h2>
       </v-col>
 
+
       <v-col
         cols="12"
         md="8"
@@ -23,6 +24,22 @@
       <ArrowComponent nextRoute="/scoreComponent" previousRoute="/genbrugeComponent" />
 
       <PointDisplay :points="totalPoints" />
+
+      <CheckList
+        :style="{ backgroundColor: '', flexDirection: 'column', alignItems: 'center' }"
+        :checklistItems="checklistItems"
+        :selectedItems="selectedItems"
+        @update:selectedItems="updateSelectedItems"
+      />
+      <ArrowComponent nextRoute="/scorepointComponent" previousRoute="/genbrugeComponent" />
+      <CalculatePoints
+        :selectedItems="selectedItems"
+        @update:points="emitUpdatePoints"
+      />
+      <PointDisplay :points="totalPoints" />
+
+
+
     </v-container>
   </v-app>
 </template>
@@ -67,6 +84,7 @@ export default {
       this.$store.dispatch('updateSelectedItems', newSelectedItems); // Update selected items in Vuex
       this.$store.dispatch('updateTotalPoints'); // Recalculate total points after updating selected items
     },
+
   },
 };
 </script>
@@ -78,12 +96,16 @@ export default {
   background-color: #1E7F85;
   padding: 20px;
   border-radius: 10px;
+
 }
 
 .foodwaste {
   background-color: #E9E5E5;
   width: 100%;
   padding: 0;
+
+
+
 }
 
 .question {
