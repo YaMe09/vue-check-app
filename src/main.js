@@ -17,6 +17,11 @@ import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 
+import ScoreComponent from './components/ScoreComponent.vue';
+
+
+
+
 
 
 
@@ -33,13 +38,19 @@ const router = createRouter({
     { path: '/pointDisplay', name: 'PointDisplay', component: PointDisplay },
     { path: '/genbrugeComponent', name: 'GenbrugeComponent', component: GenbrugeComponent },
     { path: '/info', name: 'Info', component: InfoComponent },
+
+    { path: '/scoreComponent', name: 'scoreComponent', component: ScoreComponent },
+
     { path: '/checkList', name: 'CheckList', component: CheckList},
     { path: '/foodWaste', name: 'FoodWaste', component: FoodWaste},
     { path: '/elUse', name: 'ElUse', component: ElUse},
     { path: '/arrowComponent', name: 'ArrowComponent', component: ArrowComponent},
+
     { path: '/scorepointComponent', name: 'ScorepointComponent', component: ScorepointComponent },
+
   ],
 });
+
 
 const app = createApp(App);
 
