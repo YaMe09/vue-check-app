@@ -59,7 +59,6 @@
       <br/>
       <!-- Award Badge -->
       <PointDisplay :points="totalPoints" />
-      <CalculatePoints :selectedItems="selectedItems" @update:points="updatePoints" />
     </v-container>
   </v-app>
 </template>
@@ -67,6 +66,7 @@
 <script>
 import { defineComponent, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import store from '../store'; // Importer din Vuex store
 import PointDisplay from './PointDisplay.vue';
 import NavComponent from './NavComponent.vue';
 import { VList, VListItem, VListItemTitle, VListItemSubtitle, VListItemAction, VCheckbox, VCol, VRow, VContainer, VApp, VSpacer } from 'vuetify/components';
@@ -103,6 +103,7 @@ export default defineComponent({
 
     const selectOption = (optionId) => {
       selectedOption.value = selectedOption.value === optionId ? null : optionId;
+      updateSelectedItems();
     };
 
     const optionStyle = (optionId) => {
@@ -132,32 +133,23 @@ export default defineComponent({
       return transportSchedule.value.filter(option => selectedOption.value === option.id);
     });
 
-    const totalPoints = ref(0);
+    const totalPoints = computed(() => {
+      return selectedItems.value.reduce((sum, item) => sum + item.score, 0);
+    });
 
-    const updatePoints = (points) => {
-      totalPoints.value = points;
+    const updateSelectedItems = () => {
+      // Update selected items in Vuex
+      store.dispatch('updateSelectedItems', selectedItems.value);
+      store.dispatch('updateTotalPoints');
     };
 
     const nextStep = () => {
       router.push('/elUse');
-      // this.$router.push('/nextRoute');
     };
 
     const previousStep = () => {
       router.push('/');
-      // this.$router.push('/previousRoute');
     };
-
-    const chooseAll = computed({
-      get() {
-        return transportSchedule.value.every(option => option.selected);
-      },
-      set(checkedValue) {
-        transportSchedule.value.forEach(option => {
-          option.selected = checkedValue;
-        });
-      }
-    });
 
     return {
       transportSchedule,
@@ -166,10 +158,8 @@ export default defineComponent({
       optionStyle,
       selectedItems,
       totalPoints,
-      updatePoints,
       nextStep,
       previousStep,
-      chooseAll
     };
   }
 });
