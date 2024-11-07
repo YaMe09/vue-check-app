@@ -31,7 +31,7 @@
         :selectedItems="selectedItems"
         @update:selectedItems="updateSelectedItems"
       />
-      <ArrowComponent nextRoute="/scorepointComponent" previousRoute="/genbrugeComponent" />
+      <ArrowComponent nextRoute="/ScorepointComponent" previousRoute="/GenbrugeComponent" />
       <CalculatePoints
         :selectedItems="selectedItems"
         @update:points="emitUpdatePoints"

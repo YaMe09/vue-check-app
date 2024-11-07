@@ -8,7 +8,7 @@
         <h2 class="question">Hvordan har dine indkøb været?</h2>
       </v-col>
 
-      <!-- Transport Options -->
+      <!-- Genbruge Options -->
       <v-col
         cols="12"
         md="8"
@@ -19,7 +19,7 @@
         <v-list :style="{ backgroundColor: '#8FCACA', flexDirection: 'column', alignItems: 'center' }">
           <v-list-item-group>
             <v-list-item
-              v-for="option in transportSchedule"
+              v-for="option in genbrugeOptions"
               :key="option.id"
               @click="selectOption(option.id)"
               :class="{ 'selected': selectedOption === option.id, 'disabled': selectedOption && selectedOption !== option.id }"
@@ -54,15 +54,11 @@
           </v-col>
         </v-row>
       </v-col>
-
       <br/>
       <br/>
       <br/>
       <!-- Award Badge -->
       <PointDisplay :points="totalPoints" />
-      <CalculatePoints :selectedItems="selectedItems" @update:points="updatePoints" />
-
-
     </v-container>
   </v-app>
 </template>
@@ -70,21 +66,10 @@
 <script>
 import { defineComponent, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import NavComponent from './NavComponent.vue';
+import store from '../store'; // Importer din Vuex store
 import PointDisplay from './PointDisplay.vue';
-import {
-  VList,
-  VListItem,
-  VListItemTitle,
-  VListItemSubtitle,
-  VListItemAction,
-  VCheckbox,
-  VCol,
-  VRow,
-  VContainer,
-  VApp,
-  VSpacer,
-} from 'vuetify/components';
+import NavComponent from './NavComponent.vue';
+import { VList, VListItem, VListItemTitle, VListItemSubtitle, VListItemAction, VCheckbox, VCol, VRow, VContainer, VApp, VSpacer } from 'vuetify/components';
 
 export default defineComponent({
   name: 'GenbrugeComponent',
@@ -101,12 +86,12 @@ export default defineComponent({
     VRow,
     VContainer,
     VApp,
-    VSpacer,
+    VSpacer
   },
   setup() {
     const router = useRouter();
 
-    const transportSchedule = ref([
+    const genbrugeOptions = ref([
       { id: '1', name: 'Sælg uønskede ting og find nye skatte.', score: 100 },
       { id: '2', name: 'Spar ressourcer ved at købe brugte bøger.', score: 120 },
       { id: '3', name: 'Lær at reparere i stedet for at smide væk.', score: 150 },
@@ -118,22 +103,44 @@ export default defineComponent({
 
     const selectOption = (optionId) => {
       selectedOption.value = selectedOption.value === optionId ? null : optionId;
+      updateSelectedItems();
     };
 
     const optionStyle = (optionId) => {
-      return selectedOption.value === optionId
-        ? { backgroundColor: '#56AA3F' }
-        : { backgroundColor: '#D9D9D9' };
+      if (selectedOption.value === optionId) {
+        switch (optionId) {
+          case '1':
+            return { backgroundColor: '#56AA3F' }; // Sælg uønskede ting og find nye skatte.
+          case '2':
+            return { backgroundColor: '#E3F141' }; // Spar ressourcer ved at købe brugte bøger.
+          case '3':
+            return { backgroundColor: '#80F360' }; // Lær at reparere i stedet for at smide væk.
+          case '4':
+            return { backgroundColor: '#56AA3F' }; // Skift til genanvendelige opbevaringsløsninger.
+          case '5':
+            return { backgroundColor: '#FF8205' }; // Giv ubrugte ting nyt liv og mindsk affald.
+          case '6':
+            return { backgroundColor: '#EBF957' }; // Find genbrugte tøj og møbler og spar ressourcer
+          default:
+            return { backgroundColor: '#D9D9D9' };
+        }
+      } else {
+        return { backgroundColor: '#D9D9D9' };
+      }
     };
 
     const selectedItems = computed(() => {
-      return transportSchedule.value.filter(option => selectedOption.value === option.id);
+      return genbrugeOptions.value.filter(option => selectedOption.value === option.id);
     });
 
-    const totalPoints = ref(0);
+    const totalPoints = computed(() => {
+      return selectedItems.value.reduce((sum, item) => sum + item.score, 0);
+    });
 
-    const updatePoints = (points) => {
-      totalPoints.value = points;
+    const updateSelectedItems = () => {
+      // Update selected items in Vuex
+      store.dispatch('updateSelectedItems', selectedItems.value);
+      store.dispatch('updateTotalPoints');
     };
 
     const nextStep = () => {
@@ -145,24 +152,22 @@ export default defineComponent({
     };
 
     return {
-      transportSchedule,
+      genbrugeOptions,
       selectedOption,
       selectOption,
       optionStyle,
-      nextStep,
-      previousStep,
       selectedItems,
       totalPoints,
-      updatePoints,
+      nextStep,
+      previousStep,
     };
-  },
+  }
 });
 </script>
 
 <style scoped>
 .v-container {
   padding: 0;
-  height: 50;
 }
 .genbruge {
   height: 80vh;
@@ -173,7 +178,7 @@ export default defineComponent({
   margin-bottom: 24px;
 }
 .selected {
-  background-color: #4caf50;
+  background-color: #4CAF50;
   color: white;
 }
 .disabled {
@@ -192,7 +197,7 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 100%; /* Gør knappen fuld bredde */
 }
 .v-list-item-subtitle {
   font-size: 16px;
