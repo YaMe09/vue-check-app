@@ -8,6 +8,8 @@ import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
+import ScoreComponent from './components/ScoreComponent.vue';
+
 
 const vuetifyInstance = createVuetify({
   components,
@@ -21,6 +23,7 @@ const router = createRouter({
     { path: '/transportComponent', name: 'TransportComponent', component: TransportComponent },
     { path: '/genbrugeComponent', name: 'GenbrugeComponent', component: GenbrugeComponent },
     { path: '/info', name: 'Info', component: InfoComponent },
+    {path: '/scoreComponent', name: 'scoreComponent', component: ScoreComponent,}
   ],
 });
 
