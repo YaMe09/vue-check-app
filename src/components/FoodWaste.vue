@@ -12,14 +12,14 @@
         :selectedItems="selectedItems"
         @update:selectedItems="updateSelectedItems"
       />
-      <ArrowComponent nextRoute="/" previousRoute="/genbrugeComponent" />
+      <ArrowComponent nextRoute="/scorepointComponent" previousRoute="/genbrugeComponent" />
       <CalculatePoints
         :selectedItems="selectedItems"
         @update:points="emitUpdatePoints"
       />
       <PointDisplay :points="totalPoints" />
 
-      
+
     </v-container>
   </v-app>
 </template>
@@ -63,7 +63,7 @@ export default {
       this.totalPoints = newPoints;
       this.$emit('update:points', newPoints);
     },
-    
+
   },
 };
 </script>
@@ -80,7 +80,7 @@ export default {
   background-color: #E59182;
   padding: 20px;
   border-radius: 10px;
-  
+
 }
 
 .question {

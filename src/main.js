@@ -15,6 +15,8 @@ import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
+import ScorepointComponent from './components/ScorepointComponent.vue';
+
 
 
 const vuetifyInstance = createVuetify({
@@ -35,6 +37,7 @@ const router = createRouter({
     { path: '/foodWaste', name: 'FoodWaste', component: FoodWaste},
     { path: '/elUse', name: 'ElUse', component: ElUse},
     { path: '/arrowComponent', name: 'ArrowComponent', component: ArrowComponent},
+    { path: '/scorepointComponent', name: 'scorepointComponent', component: ScorepointComponent },
   ],
 });
 
