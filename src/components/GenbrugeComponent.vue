@@ -2,7 +2,7 @@
   <NavComponent />
   <v-app class="genbruge" id="genbruge">
     <v-container fluid fill-height :style="{backgroundColor:'#E9E5E5', width: '100%', padding: '24px'}">
-      
+
       <!-- Heading -->
       <v-col cols="12" md="8" lg="4" class="text-center">
         <h2 class="question">Hvordan har dine indkøb været?</h2>
@@ -66,10 +66,9 @@
         </v-btn>
       </v-col>
 
-
+       <PointDisplay :points="totalPoints" />
+       <CalculatePoints :selectedItems="selectedItems" @update:points="updatePoints" />
     </v-container>
-    <PointDisplay :points="totalPoints" />
-    <CalculatePoints :selectedItems="selectedItems" @update:points="updatePoints" />
   </v-app>
 </template>
 
