@@ -2,7 +2,7 @@
   <NavComponent />
   <v-app class="genbruge" id="genbruge">
     <v-container fluid fill-height :style="{backgroundColor:'#E9E5E5', width: '100%', padding: '24px'}">
-      
+
       <!-- Heading -->
       <v-col cols="12" md="8" lg="4" class="text-center">
         <h2 class="question">Hvordan har dine indkøb været?</h2>
@@ -59,17 +59,11 @@
       <br/>
       <br/>
       <!-- Award Badge -->
-      <v-col cols="12" md="4" sm="6" class="award-badge" justify="center">
-        <v-btn size="x-large" :style="{ backgroundColor: '#8FCACA', borderRadius: '18px', width: '100%' }">
-          <img class="bg-img" src="../images/100.svg" /> &nbsp;
-          <img src="../images/fa-solid_award.svg" />
-        </v-btn>
-      </v-col>
+      <PointDisplay :points="totalPoints" />
+      <CalculatePoints :selectedItems="selectedItems" @update:points="updatePoints" />
 
 
     </v-container>
-    <PointDisplay :points="totalPoints" />
-    <CalculatePoints :selectedItems="selectedItems" @update:points="updatePoints" />
   </v-app>
 </template>
 
