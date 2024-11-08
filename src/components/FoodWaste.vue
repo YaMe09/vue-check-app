@@ -1,25 +1,19 @@
 <template>
   <NavComponent />
   <v-app class="foodwaste" id="foodwaste">
-    <v-container fluid fill-height :style="{ backgroundColor: '#E9E5E5', padding: '25px' }">
+    <v-container fluid fill-height :style="{ backgroundColor: '#E9E5E5', borderRadius: '25px', padding: '24px', width: '395px', marginBottom: '24px'}">
       <v-col cols="12" md="8" lg="4" class="text-center">
         <h2 class="question">Hvordan har dit madspild været?</h2>
       </v-col>
 
 
-      <v-col
-        cols="12"
-        md="8"
-        lg="4"
-        align="center"
-        :style="{ backgroundColor: '#E59182', borderRadius: '25px', padding: '24px', width: '485px', marginBottom: '24px' }"
-      >
+
         <CheckList
           :checklistItems="checklistItems"
           :selectedItems="selectedItems"
           @update:selectedItems="updateSelectedItems"
         />
-      </v-col>
+
 
       <ArrowComponent nextRoute="/scoreComponent" previousRoute="/genbrugeComponent" />
 
@@ -77,9 +71,7 @@ export default {
 <style scoped>
 .v-container {
   justify-content: center;
-  margin: 10px;
-  background-color: #1E7F85;
-  padding: 20px;
+
   border-radius: 10px;
 
 }
