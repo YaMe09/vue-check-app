@@ -1,7 +1,7 @@
 <template>
   <NavComponent />
   <v-app class="energy-consumption" id="energy-consumption">
-    <v-container fluid fill-height :style="{ backgroundColor: '#E9E5E5' }">
+    <v-container fluid fill-height :style="{ backgroundColor: '#E9E5E5', padding:'24', /* width: 100%; */}"><br/>
       <v-col cols="12" md="8" lg="4" class="text-center">
         <h2 class="question">Hvordan har dit El-forbrug været?</h2>
       </v-col>
@@ -11,7 +11,7 @@
         md="8"
         lg="4"
         align="center"
-        :style="{ backgroundColor: '#1E7F85', borderRadius: '25px', padding: '24px', width: '485px', marginBottom: '24px' }"
+        :style="{ backgroundColor: '#E9E5E5', borderRadius: '25px', padding: '20px', width: '485px', marginBottom: '24px'}"
       >
         <CheckList
           :checklistItems="checklistItems"
@@ -72,16 +72,16 @@ export default {
 </script>
 
 <style scoped>
-.v-container {
-  justify-content: center;
-  margin: 10px;
-
+.award-badge{
+background:#1E7F85;
+border-radius: 25px;
 }
 
 .energy-consumption {
   background-color: #E9E5E5;
   width: 100%;
   padding: 0;
+  height: 90vh;
 }
 
 .question {
@@ -123,15 +123,22 @@ export default {
   overflow: none;
 }
 div[data-v-617dcb71]{
- background:#1E7F85;
+ background: #1E7F85;
+
 }
 .v-list {
   overflow: none;
   padding: 0;
+  background: #1E7F85;
 }
 .v-list-item{
   display: flex;
 }
-
-
+div.v-col-md-8.v-col-lg-4.v-col-12{
+  padding: 0;
+  margin-bottom: 0;
+}
+.checklist-card[data-v-617dcb71]{
+  padding: 0;
+}
 </style>

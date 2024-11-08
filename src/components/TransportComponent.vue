@@ -190,8 +190,9 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
   margin: 20px auto;
-  border-radius: 18px;
+  border-radius: 25px;
   opacity: 0.9px;
+  background: #8981A8;
 }
 .award-badge .v-btn {
   display: flex;

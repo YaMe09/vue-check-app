@@ -98,6 +98,10 @@ export default {
   border-radius: 10px;
 
 }
+.award-badge{
+background: #E59182;
+border-radius: 25px;
+}
 
 .foodwaste {
   background-color: #E9E5E5;

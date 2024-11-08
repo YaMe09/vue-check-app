@@ -224,6 +224,5 @@ export default defineComponent({
 .award-badge{
   background-color: #8FCACA;
   border-radius: 25px;
-  opacity: 0.9;
 }
 </style>
