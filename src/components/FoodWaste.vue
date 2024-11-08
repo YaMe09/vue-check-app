@@ -25,21 +25,6 @@
 
       <PointDisplay :points="totalPoints" />
 
-      <CheckList
-        :style="{ backgroundColor: '', flexDirection: 'column', alignItems: 'center' }"
-        :checklistItems="checklistItems"
-        :selectedItems="selectedItems"
-        @update:selectedItems="updateSelectedItems"
-      />
-      <ArrowComponent nextRoute="/ScorepointComponent" previousRoute="/GenbrugeComponent" />
-      <CalculatePoints
-        :selectedItems="selectedItems"
-        @update:points="emitUpdatePoints"
-      />
-      <PointDisplay :points="totalPoints" />
-
-
-
     </v-container>
   </v-app>
 </template>
