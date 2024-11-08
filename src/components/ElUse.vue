@@ -1,25 +1,20 @@
 <template>
   <NavComponent />
   <v-app class="energy-consumption" id="energy-consumption">
-    <v-container fluid fill-height :style="{ backgroundColor: '#E9E5E5', padding:'24', /* width: 100%; */}"><br/>
+    <v-container  :style="{ backgroundColor: '#E9E5E5', borderRadius: '25px',  width: '395px', marginBottom: '24px'}"><br/>
+
       <v-col cols="12" md="8" lg="4" class="text-center">
         <h2 class="question">Hvordan har dit El-forbrug været?</h2>
       </v-col>
 
-      <v-col
-        cols="12"
-        md="8"
-        lg="4"
-        align="center"
-        :style="{ backgroundColor: '#E9E5E5', borderRadius: '25px', padding: '20px', width: '485px'}"
-      >
+
         <CheckList
           :checklistItems="checklistItems"
           :selectedItems="selectedItems"
           @update:selectedItems="updateSelectedItems"
 
         />
-      </v-col>
+
 
       <ArrowComponent nextRoute="/GenbrugeComponent" previousRoute="/TransportComponent" />
 
@@ -81,7 +76,6 @@ border-radius: 25px;
   background-color: #E9E5E5;
   width: 100%;
   padding: 0;
-  height: 90vh;
 }
 
 .question {
@@ -125,8 +119,12 @@ div[data-v-617dcb71]{
 .v-list.v-theme--light.v-list--density-default.v-list--one-line{
     background: #1E7F85;
     padding: 0;
-    overflow: none;
+    /*overflow: none;
+    padding: 8px 0; }
+    background: rgba(var(--v-theme-surface));
+    height:550px; */
 }
+
 
 
 
