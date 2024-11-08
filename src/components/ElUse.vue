@@ -11,7 +11,7 @@
         md="8"
         lg="4"
         align="center"
-        :style="{ backgroundColor: '#E9E5E5', borderRadius: '25px', padding: '20px', width: '485px', marginBottom: '24px'}"
+        :style="{ backgroundColor: '#E9E5E5', borderRadius: '25px', padding: '20px', width: '485px'}"
       >
         <CheckList
           :checklistItems="checklistItems"
@@ -115,30 +115,19 @@ border-radius: 25px;
 .v-label {
   color: black;
 }
-.v-list, .v-theme--light, .v-list--density-default, .v-list--one-line{
-  width:100%;
-  margin-bottom: 24px;
-}
-.v-list-item__content{
-  overflow: none;
-}
+
+
 div[data-v-617dcb71]{
  background: #1E7F85;
 
 }
-.v-list {
-  overflow: none;
-  padding: 0;
-  background: #1E7F85;
+
+.v-list.v-theme--light.v-list--density-default.v-list--one-line{
+    background: #1E7F85;
+    padding: 0;
+    overflow: none;
 }
-.v-list-item{
-  display: flex;
-}
-div.v-col-md-8.v-col-lg-4.v-col-12{
-  padding: 0;
-  margin-bottom: 0;
-}
-.checklist-card[data-v-617dcb71]{
-  padding: 0;
-}
+
+
+
 </style>

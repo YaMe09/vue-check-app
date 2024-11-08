@@ -5,9 +5,9 @@
       md="8"
       lg="4"
       align="center"
-      :style="{  borderRadius: '25px', padding: '24px', width: '485px', marginBottom: '24px' }"
+      :style="{  borderRadius: '25px', padding: '24px', width: '485px' }"
     >
-      <v-list :style="{ flexDirection: 'column', alignItems: 'center' }">
+      <v-list :style="{ flexDirection: 'column', alignItems: 'center', padding:'0' }">
         <v-list-item-group>
           <v-list-item
             v-for="item in checklistItems"
@@ -95,8 +95,8 @@ export default {
 }
 .checklist-card {
   margin: 5px 0; /* Margin for each checklist item */
-  padding: 8px; /* Padding inside the card for touch */
-  /* Border around the checklist card */
+  padding: 0px; /* Padding inside the card for touch */
+
   transition: background-color 0.3s ease; /* Smooth transition */
 }
 .checklist-card.selected {
