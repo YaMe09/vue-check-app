@@ -14,7 +14,7 @@
         md="8"
         lg="4"
         align="center"
-        :style="{ backgroundColor: '#8981A8', borderRadius: '25px', padding: '24px', width: '485px', marginBottom: '24px' }"
+        :style="{ backgroundColor: '#8981A8', borderRadius: '25px', padding: '24px', marginBottom: '24px' }"
       >
         <v-list :style="{ backgroundColor: '#8981A8', flexDirection: 'column', alignItems: 'center' }">
           <v-list-item-group>
@@ -58,25 +58,23 @@
       <br/>
       <br/>
       <!-- Award Badge -->
+      <PointDisplay :points="totalPoints" />
     </v-container>
-    <PointDisplay :points="totalPoints" />
-    <CalculatePoints :selectedItems="selectedItems" @update:points="updatePoints" />
   </v-app>
 </template>
 
 <script>
 import { defineComponent, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import CalculatePoints from './CalculatePoints.vue';
+import store from '../store'; // Importer din Vuex store
 import PointDisplay from './PointDisplay.vue';
 import NavComponent from './NavComponent.vue';
-import { VList, VListItem, VListItemTitle, VListItemSubtitle, VListItemAction, VCheckbox, VBtn, VCol, VRow, VContainer, VApp, VSpacer } from 'vuetify/components';
+import { VList, VListItem, VListItemTitle, VListItemSubtitle, VListItemAction, VCheckbox, VCol, VRow, VContainer, VApp, VSpacer } from 'vuetify/components';
 
 export default defineComponent({
   name: 'TransportComponent',
   components: {
     NavComponent,
-    CalculatePoints,
     PointDisplay,
     VList,
     VListItem,
@@ -84,7 +82,6 @@ export default defineComponent({
     VListItemSubtitle,
     VListItemAction,
     VCheckbox,
-    VBtn,
     VCol,
     VRow,
     VContainer,
@@ -106,6 +103,7 @@ export default defineComponent({
 
     const selectOption = (optionId) => {
       selectedOption.value = selectedOption.value === optionId ? null : optionId;
+      updateSelectedItems();
     };
 
     const optionStyle = (optionId) => {
@@ -135,32 +133,23 @@ export default defineComponent({
       return transportSchedule.value.filter(option => selectedOption.value === option.id);
     });
 
-    const totalPoints = ref(0);
+    const totalPoints = computed(() => {
+      return selectedItems.value.reduce((sum, item) => sum + item.score, 0);
+    });
 
-    const updatePoints = (points) => {
-      totalPoints.value = points;
+    const updateSelectedItems = () => {
+      // Update selected items in Vuex
+      store.dispatch('updateSelectedItems', selectedItems.value);
+      store.dispatch('updateTotalPoints');
     };
 
     const nextStep = () => {
-      alert("kommer snart");
-      // this.$router.push('/nextRoute');
+      router.push('/elUse');
     };
 
     const previousStep = () => {
       router.push('/');
-      // this.$router.push('/previousRoute');
     };
-
-    const chooseAll = computed({
-      get() {
-        return transportSchedule.value.every(option => option.selected);
-      },
-      set(checkedValue) {
-        transportSchedule.value.forEach(option => {
-          option.selected = checkedValue;
-        });
-      }
-    });
 
     return {
       transportSchedule,
@@ -169,10 +158,8 @@ export default defineComponent({
       optionStyle,
       selectedItems,
       totalPoints,
-      updatePoints,
       nextStep,
       previousStep,
-      chooseAll
     };
   }
 });
@@ -203,8 +190,9 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
   margin: 20px auto;
-  border-radius: 18px;
+  border-radius: 25px;
   opacity: 0.9px;
+  background: #8981A8;
 }
 .award-badge .v-btn {
   display: flex;
@@ -230,5 +218,8 @@ export default defineComponent({
   margin-top: 8px;
   margin-bottom: 12px;
   justify-content: center;
+}
+.award-badge[data-v-30caf185]{
+  margin: 0;
 }
 </style>

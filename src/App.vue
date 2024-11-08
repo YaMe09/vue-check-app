@@ -1,12 +1,12 @@
 <template>
-  <v-app>
+  <v-app class="app">
     <v-container v-if="showWelcome" class="forside" fill-height>
       <v-row align="center" justify="center">
         <v-col>
-          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
           <h1 :style="{ fontWeight: '700' }">Velkommen</h1>
           <br />
-          <br /><br /><br /><br /><br /><br />
+          <br /><br /><br /><br />
           <p :style="{ fontWeight: '700' }">Gør noget for at passe på fremtiden</p>
           <br /><br /><br /><br /><br /><br /><br />
           <AppknappComponent @navigate="hideWelcome" />
@@ -50,9 +50,11 @@ export default defineComponent({
   background-image: url('./images/forside.svg');
   background-size: cover;
   background-position: center;
+  margin-top: 60px;
 }
 
 h1, p {
   color: black;
 }
+
 </style>
