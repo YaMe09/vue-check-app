@@ -57,7 +57,7 @@ export default {
     };
 
     const goHome = () => {
-      router.push('#');
+      router.push('/frontPage');
     };
 
     return {
