@@ -3,7 +3,7 @@
     ><br />
     <v-toolbar app :style="{ backgroundColor: '#E9E5E5' }">
       <v-col class="d-flex align-center">
-        <router-link to="#">
+        <router-link to="/frontPage">
           <img class="right" src="../images/heroicons_home-20-solid.svg" />
         </router-link>
 

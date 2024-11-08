@@ -6,7 +6,7 @@ import InfoComponent from '@/components/InfoComponent.vue';
 import GenbrugeComponent from '@/components/GenbrugeComponent.vue';
 import CalculatePoints from '@/components/CalculatePoints.vue';
 import PointDisplay from '@/components/PointDisplay.vue';
-
+import FrontPage from '@/components/FrontPage.vue';
 import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
@@ -27,6 +27,7 @@ const router = createRouter({
     { path: '/pointDisplay', name: 'PointDisplay', component: PointDisplay },
     { path: '/genbrugeComponent', name: 'GenbrugeComponent', component: GenbrugeComponent },
     { path: '/info', name: 'Info', component: InfoComponent },
+    { path: '/frontPage', name: 'FrontPage', component: FrontPage },
   ],
 });
 
