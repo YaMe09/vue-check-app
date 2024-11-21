@@ -22,7 +22,7 @@
               v-for="option in transportSchedule"
               :key="option.id"
               @click="selectOption(option.id)"
-              :class="{ 'selected': selectedOption.includes(option.id) }"
+              :class="{ 'selected': selectedOptions.includes(option.id) }"
               :style="optionStyle(option.id)"
             >
               <v-list-item-content>
@@ -31,7 +31,7 @@
               </v-list-item-content>
               <v-list-item-action>
                 <v-checkbox
-                  v-model="selectedOption"
+                  v-model="selectedOptions"
                   :value="option.id"
                   :aria-label="option.name"
                 />
@@ -65,6 +65,7 @@
 <script>
 import { defineComponent, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+
 import store from '../store'; // Importer din Vuex store
 import PointDisplay from './PointDisplay.vue';
 import NavComponent from './NavComponent.vue';
@@ -85,7 +86,7 @@ export default defineComponent({
     VRow,
     VContainer,
     VApp,
-    VSpacer
+    VSpacer,
   },
   setup() {
     const router = useRouter();
@@ -109,8 +110,15 @@ export default defineComponent({
       updateSelectedItems();
     };
 
+    const updateSelectedItems = () => {
+      const selectedItems = transportSchedule.value.filter(option => selectedOptions.value.includes(option.id));
+      store.dispatch('updateSelectedItems', selectedItems);
+    };
+
+    const totalPoints = computed(() => store.getters.getTotalPoints);
+
     const optionStyle = (optionId) => {
-      if (selectedOption.value.includes(optionId)) {
+      if (selectedOptions.value.includes(optionId)) {
         switch (optionId) {
           case '1':
             return { backgroundColor: '#56AA3F' }; // Cykel
@@ -130,15 +138,6 @@ export default defineComponent({
       } else {
         return { backgroundColor: '#D9D9D9' };
       }
-    };
-
-
-
-     const totalPoints = computed(() => store.getters.getTotalPoints);
-
-    const updateSelectedItems = () => {
-      const selectedItems = transportSchedule.value.filter(option => selectedOptions.value.includes(option.id));
-      store.dispatch('updateSelectedItems', selectedItems);
     };
 
     const nextStep = () => {

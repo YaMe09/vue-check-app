@@ -14,7 +14,7 @@
         md="8"
         lg="4"
         align="center"
-        :style="{ backgroundColor: '#8FCACA', borderRadius: '25px', padding: '24px', width: '485px', marginBottom: '24px' }"
+        :style="{ backgroundColor: '#8FCACA', borderRadius: '25px', width: '485px', marginBottom: '24px' }"
       >
         <CheckList
           :checklistItems="genbrugeOptions"
@@ -70,16 +70,16 @@ export default defineComponent({
       { id: '5', name: 'Giv ubrugte ting nyt liv og mindsk affald.', score: 200 },
       { id: '6', name: 'Find genbrugte tøj og møbler og spar ressourcer', score: 100 },
     ]);
-    const selectedOption = ref(null);
+    const selectedOption = ref([]);
 
     const updateSelectedItems = (newSelectedItems) => {
       selectedOption.value = newSelectedItems;
       store.dispatch('updateSelectedItems', newSelectedItems);
     };
-    const totalPoints = computed(() => {
-      return selectedItems.value.reduce((sum, item) => sum + item.score, 0);
-    });
 
+
+
+    const totalPoints = computed(() => store.getters.getTotalPoints);
 
 
     const nextStep = () => {
@@ -115,11 +115,11 @@ export default defineComponent({
   margin-bottom: 24px;
 }
 .selected {
-  background-color: #4CAF50;
+  background-color: #4CAF50 !important;
   color: white;
 }
 .disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   pointer-events: none;
 }
 .award-badge {
@@ -162,4 +162,5 @@ export default defineComponent({
   background-color: #8FCACA;
   border-radius: 25px;
 }
+
 </style>

@@ -30,6 +30,7 @@ import PointDisplay from './PointDisplay.vue';
 import ArrowComponent from './ArrowComponent.vue';
 
 export default {
+  name: 'FoodWaste',
   components: {
     PointDisplay,
     CheckList,

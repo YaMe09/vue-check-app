@@ -30,6 +30,7 @@ import NavComponent from './NavComponent.vue';
 import ArrowComponent from './ArrowComponent.vue';
 
 export default {
+  name: 'ElUse',
   components: {
     PointDisplay,
     CheckList,
