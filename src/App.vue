@@ -8,7 +8,22 @@
           <br />
           <br /><br /><br /><br />
           <p :style="{ fontWeight: '700' }">Gør noget for at passe på fremtiden</p>
-          <br /><br /><br /><br /><br /><br /><br />
+          <br /><br /><br />
+          <v-col>
+
+            <v-text-field
+              v-model="name"
+              placeholder="Indtast dit navn"
+              label="Navn"
+              variant="outlined"
+              persistent-hint
+              :style="{ color: 'green', marginRight: '10px', marginLeft: '10px' }"
+              id="name"
+              name="name"
+              autocomplete="name"
+            ></v-text-field>
+          </v-col>
+         <br /><br />
           <AppknappComponent @navigate="hideWelcome" />
         </v-col>
       </v-row>
@@ -18,7 +33,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, provide } from 'vue';
 import AppknappComponent from './components/AppknappComponent.vue';
 
 export default defineComponent({
@@ -26,6 +41,8 @@ export default defineComponent({
   name: 'App',
   setup() {
     const showWelcome = ref(true);
+    const name = ref('');
+    provide('name', name);
 
     const hideWelcome = () => {
       showWelcome.value = false;
@@ -34,6 +51,7 @@ export default defineComponent({
     return {
       showWelcome,
       hideWelcome,
+      name,
     };
   },
 });
