@@ -22,7 +22,7 @@
               v-for="option in transportSchedule"
               :key="option.id"
               @click="selectOption(option.id)"
-              :class="{ 'selected': selectedOption === option.id, 'disabled': selectedOption && selectedOption !== option.id }"
+              :class="{ 'selected': selectedOption.includes(option.id) }"
               :style="optionStyle(option.id)"
             >
               <v-list-item-content>
@@ -33,7 +33,6 @@
                 <v-checkbox
                   v-model="selectedOption"
                   :value="option.id"
-                  :disabled="selectedOption && selectedOption !== option.id"
                   :aria-label="option.name"
                 />
               </v-list-item-action>
@@ -99,15 +98,19 @@ export default defineComponent({
       { id: '5', name: 'Fly', emission: 223, score: 20 },
       { id: '6', name: 'Offentlig transport (tog)', emission: 37, score: 60 },
     ]);
-    const selectedOption = ref(null);
+    const selectedOptions = ref([]);
 
     const selectOption = (optionId) => {
-      selectedOption.value = selectedOption.value === optionId ? null : optionId;
+      if (selectedOptions.value.includes(optionId)) {
+        selectedOptions.value = selectedOptions.value.filter(id => id !== optionId);
+      } else {
+        selectedOptions.value.push(optionId);
+      }
       updateSelectedItems();
     };
 
     const optionStyle = (optionId) => {
-      if (selectedOption.value === optionId) {
+      if (selectedOption.value.includes(optionId)) {
         switch (optionId) {
           case '1':
             return { backgroundColor: '#56AA3F' }; // Cykel
@@ -129,18 +132,13 @@ export default defineComponent({
       }
     };
 
-    const selectedItems = computed(() => {
-      return transportSchedule.value.filter(option => selectedOption.value === option.id);
-    });
 
-    const totalPoints = computed(() => {
-      return selectedItems.value.reduce((sum, item) => sum + item.score, 0);
-    });
+
+     const totalPoints = computed(() => store.getters.getTotalPoints);
 
     const updateSelectedItems = () => {
-      // Update selected items in Vuex
-      store.dispatch('updateSelectedItems', selectedItems.value);
-      store.dispatch('updateTotalPoints');
+      const selectedItems = transportSchedule.value.filter(option => selectedOptions.value.includes(option.id));
+      store.dispatch('updateSelectedItems', selectedItems);
     };
 
     const nextStep = () => {
@@ -153,10 +151,9 @@ export default defineComponent({
 
     return {
       transportSchedule,
-      selectedOption,
+      selectedOptions,
       selectOption,
       optionStyle,
-      selectedItems,
       totalPoints,
       nextStep,
       previousStep,
