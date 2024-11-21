@@ -39,14 +39,15 @@
       <p class="description-text">{{ name }}</p>
       <br />
     </div>
-    <PointDisplay :points="totalPoints" :style="{ backgroundColor: 'rgb(62, 122, 0)', borderRadius: '25px', width:'400px' }" />
+    <PointDisplay :points="totalPoints" :name="name" :style="{ backgroundColor: 'rgb(62, 122, 0)', borderRadius: '25px', width:'400px' }" />
     <br />
   </v-container>
 </template>
 
 <script>
 import { useRouter } from 'vue-router';
-
+import PointDisplay from './PointDisplay.vue';
+import {inject} from 'vue';
 export default {
   name: 'FrontPage',
   components: {
@@ -55,7 +56,7 @@ export default {
   setup() {
     const router = useRouter();
     const name = inject('name');
-   
+
 
 
     const goToMainSite = () => {
