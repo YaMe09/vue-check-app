@@ -24,7 +24,7 @@
               />
 
           </v-list-item>
-        
+
   </v-container>
 </template>
 
@@ -93,7 +93,7 @@ export default {
    margin-top: 35px;
 }
 .checklist-card {
-  margin: 8px 0; /* Margin for each checklist item */ /* Padding inside the card for touch */
+  margin: 12px 0; /* Margin for each checklist item */ /* Padding inside the card for touch */
   padding: 16px;
   display: flex;
   height: 80px;

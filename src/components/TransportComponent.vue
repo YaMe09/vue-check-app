@@ -14,7 +14,7 @@
         md="8"
         lg="4"
         align="center"
-        :style="{ backgroundColor: '#8981A8', borderRadius: '25px', padding: '24px', marginBottom: '24px' }"
+        :style="{ backgroundColor: '#8981A8', borderRadius: '25px', padding: '24px', marginBottom: '20px' }"
       >
         <v-list :style="{ backgroundColor: '#8981A8', flexDirection: 'column', alignItems: 'center' }">
           <v-list-item-group>

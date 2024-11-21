@@ -14,7 +14,7 @@
         md="8"
         lg="4"
         align="center"
-        :style="{ backgroundColor: '#8FCACA', borderRadius: '25px', width: '485px', marginBottom: '24px' }"
+        :style="{ backgroundColor: '#8FCACA', borderRadius: '25px', width: '485px', marginBottom: '20px' }"
       >
         <CheckList
           :checklistItems="genbrugeOptions"
