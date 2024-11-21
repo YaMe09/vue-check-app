@@ -1,8 +1,6 @@
 <template>
   <v-container :style="{  borderRadius: '25px', padding: '24px', width:'360px'}">
 
-      <v-list :style="{ flexDirection: 'column', alignItems: 'center' }">
-        <v-list-item-group>
           <v-list-item
             v-for="item in checklistItems"
             :key="item.id"
@@ -26,9 +24,7 @@
               />
 
           </v-list-item>
-        </v-list-item-group>
-      </v-list>
-
+        
   </v-container>
 </template>
 
