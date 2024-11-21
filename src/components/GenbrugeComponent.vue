@@ -16,30 +16,11 @@
         align="center"
         :style="{ backgroundColor: '#8FCACA', borderRadius: '25px', padding: '24px', width: '485px', marginBottom: '24px' }"
       >
-        <v-list :style="{ backgroundColor: '#8FCACA', flexDirection: 'column', alignItems: 'center' }">
-          <v-list-item-group>
-            <v-list-item
-              v-for="option in genbrugeOptions"
-              :key="option.id"
-              @click="selectOption(option.id)"
-              :class="{ 'selected': selectedOption === option.id, 'disabled': selectedOption && selectedOption !== option.id }"
-              :style="optionStyle(option.id)"
-            >
-              <v-list-item-content>
-                <v-list-item-title>{{ option.name }}</v-list-item-title>
-                <v-list-item-subtitle> Score: {{ option.score }}</v-list-item-subtitle>
-              </v-list-item-content>
-              <v-list-item-action>
-                <v-checkbox
-                  v-model="selectedOption"
-                  :value="option.id"
-                  :disabled="selectedOption && selectedOption !== option.id"
-                  :aria-label="option.name"
-                />
-              </v-list-item-action>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
+        <CheckList
+          :checklistItems="genbrugeOptions"
+          :selectedItems="selectedOption"
+          @update:selectedItems="updateSelectedItems"
+        />
       </v-col>
 
       <!-- Navigation Arrows -->
@@ -69,24 +50,14 @@ import { useRouter } from 'vue-router';
 import store from '../store'; // Importer din Vuex store
 import PointDisplay from './PointDisplay.vue';
 import NavComponent from './NavComponent.vue';
-import { VList, VListItem, VListItemTitle, VListItemSubtitle, VListItemAction, VCheckbox, VCol, VRow, VContainer, VApp, VSpacer } from 'vuetify/components';
+import CheckList from './Checklist.vue';
 
 export default defineComponent({
   name: 'GenbrugeComponent',
   components: {
     NavComponent,
     PointDisplay,
-    VList,
-    VListItem,
-    VListItemTitle,
-    VListItemSubtitle,
-    VListItemAction,
-    VCheckbox,
-    VCol,
-    VRow,
-    VContainer,
-    VApp,
-    VSpacer
+    CheckList,
   },
   setup() {
     const router = useRouter();
@@ -101,47 +72,15 @@ export default defineComponent({
     ]);
     const selectedOption = ref(null);
 
-    const selectOption = (optionId) => {
-      selectedOption.value = selectedOption.value === optionId ? null : optionId;
-      updateSelectedItems();
+    const updateSelectedItems = (newSelectedItems) => {
+      selectedOption.value = newSelectedItems;
+      store.dispatch('updateSelectedItems', newSelectedItems);
     };
-
-    const optionStyle = (optionId) => {
-      if (selectedOption.value === optionId) {
-        switch (optionId) {
-          case '1':
-            return { backgroundColor: '#56AA3F' }; // Sælg uønskede ting og find nye skatte.
-          case '2':
-            return { backgroundColor: '#E3F141' }; // Spar ressourcer ved at købe brugte bøger.
-          case '3':
-            return { backgroundColor: '#80F360' }; // Lær at reparere i stedet for at smide væk.
-          case '4':
-            return { backgroundColor: '#56AA3F' }; // Skift til genanvendelige opbevaringsløsninger.
-          case '5':
-            return { backgroundColor: '#FF8205' }; // Giv ubrugte ting nyt liv og mindsk affald.
-          case '6':
-            return { backgroundColor: '#EBF957' }; // Find genbrugte tøj og møbler og spar ressourcer
-          default:
-            return { backgroundColor: '#D9D9D9' };
-        }
-      } else {
-        return { backgroundColor: '#D9D9D9' };
-      }
-    };
-
-    const selectedItems = computed(() => {
-      return genbrugeOptions.value.filter(option => selectedOption.value === option.id);
-    });
-
     const totalPoints = computed(() => {
       return selectedItems.value.reduce((sum, item) => sum + item.score, 0);
     });
 
-    const updateSelectedItems = () => {
-      // Update selected items in Vuex
-      store.dispatch('updateSelectedItems', selectedItems.value);
-      store.dispatch('updateTotalPoints');
-    };
+
 
     const nextStep = () => {
       router.push('/foodWaste');
@@ -154,9 +93,7 @@ export default defineComponent({
     return {
       genbrugeOptions,
       selectedOption,
-      selectOption,
-      optionStyle,
-      selectedItems,
+      updateSelectedItems,
       totalPoints,
       nextStep,
       previousStep,

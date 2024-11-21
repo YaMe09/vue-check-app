@@ -39,15 +39,13 @@
       <p class="description-text">{{ name }}</p>
       <br />
     </div>
-    <PointDisplay :points="totalPoints" :name="name" :style="{ backgroundColor: 'rgb(62, 122, 0)', borderRadius: '25px', width:'400px' }" />
+    <PointDisplay :points="totalPoints" :style="{ backgroundColor: 'rgb(62, 122, 0)', borderRadius: '25px', width:'400px' }" />
     <br />
   </v-container>
 </template>
 
 <script>
 import { useRouter } from 'vue-router';
-import DayStreak from '@/components/DayStreak.vue';
-import TotalPoints from '@/components/TotalPoints.vue';
 
 export default {
   name: 'FrontPage',
@@ -57,7 +55,7 @@ export default {
   setup() {
     const router = useRouter();
     const name = inject('name');
-    const totalPoints = ref(0);
+   
 
 
     const goToMainSite = () => {
