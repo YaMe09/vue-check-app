@@ -1,5 +1,6 @@
 <template>
   <v-container :style="{ backgroundColor: '#E9E5E5' }" class="front-page" align="center">
+  <br />
     <!-- Logo træ -->
     <v-container class="logo-container">
       <img src="../Images/træ.svg" alt="Logo billede" class="logo" />
@@ -21,47 +22,56 @@
     </v-container>
 
     <!-- Wrapper for Day Streak and Total Points to remove extra spacing -->
-    <div class="streak-points-wrapper">
-      <DayStreak :streak="5" />
-      <TotalPoints :totalPoints="dailyTotalPoints" />
-    </div>
+    <v-container fluid>
+      <v-row justify="center" align="center">
+        <v-col class="text-center">
+           <vTypography class="points-value" variant="h1">5Dage i træk</vTypography><br />
+           <vTypography class="points-text" variant="subtitle1">Gram CO2 sparet</vTypography>
+        </v-col>
+      </v-row>
+    </v-container>
+    <br />
 
     <!-- New "Din score" section with image underneath -->
     <div class="score-section">
       <h2 class="score-text">Din score</h2>
-      <img src="../Images/ScorePoint.svg" alt="Score Image" class="score-image"/>
+      <br />
+      <p class="description-text">{{ name }}</p>
+      <br />
     </div>
-
+    <PointDisplay :points="totalPoints" :name="name" :style="{ backgroundColor: 'rgb(62, 122, 0)', borderRadius: '25px', width:'400px' }" />
+    <br />
   </v-container>
 </template>
 
 <script>
 import { useRouter } from 'vue-router';
-import DayStreak from '@/components/DayStreak.vue';
-import TotalPoints from '@/components/TotalPoints.vue';
-
+import PointDisplay from './PointDisplay.vue';
+import { ref, inject } from 'vue';
 export default {
   name: 'FrontPage',
   components: {
-    DayStreak,
-    TotalPoints,
+    PointDisplay,
   },
   setup() {
     const router = useRouter();
-
-    // Example daily total points; replace with actual calculated points
-    const dailyTotalPoints = 150;
+    const name = inject('name');
+    const totalPoints = ref(0);
+    
 
     const goToMainSite = () => {
       router.push('/TransportComponent');
     };
 
-    return { goToMainSite, dailyTotalPoints };
+    return { goToMainSite, name,};
   },
 };
 </script>
 
 <style scoped>
+.v-col-12{
+  flex: none;
+}
 .front-page {
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
@@ -90,9 +100,17 @@ export default {
   margin-top: 10px;
 }
 
-.check-habits-section {
-  margin-top: 20px;
+.points-value, .points-text{
+  font-size: 24px;
+  font-weight: bold;
+  color: #3E7A00;
 }
+.points-text{
+  font-size: 16px;
+  font-weight: bold;
+  color: #3E7A00;
+}
+
 
 .check-habits-text {
   margin-top: 40px;
@@ -101,11 +119,11 @@ export default {
 }
 
 .check-habits-button {
-  padding: 10px 20px;
+  padding: 15px 25px;
   background-color: #3E7A00;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
 }
@@ -118,32 +136,33 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px; /* Adjust the gap as needed */
-  margin-top: 50px;
-  padding: 0;
-}
-
-.day-streak-row,
-.total-points-row {
-  margin: 0;
-  padding: 0;
+  gap: 5px; /* Gap between streak and points */
+/* Margin above the streak-points-wrapper */
 }
 
 .score-section {
-  margin-top: 50px;
+ /* Margin above score section */
   text-align: center;
+
 }
 
-.score-text {
+.description-text{
+  font-size: 24px;
+  font-weight: 600;
+}
+.score-text{
+  font-size: 28px;
+  font-weight: bold;
+}
+ul {
+  list-style-type: none;
+}
+.habits-title{
   font-size: 24px;
   font-weight: bold;
 }
-
-.score-image {
-  margin-top: 10px;
-  max-width: 500px; /* Increase max-width to make it larger */
-  width: 100%; /* Ensures the image scales with max-width */
-  height: auto; /* Maintains aspect ratio */
-}
+.habits-list{
+  background: #fff;
+  width: 330px;
+  }
 </style>
-
