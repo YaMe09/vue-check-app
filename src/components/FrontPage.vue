@@ -46,8 +46,9 @@
 
 <script>
 import { useRouter } from 'vue-router';
-import PointDisplay from './PointDisplay.vue';
-import { ref, inject } from 'vue';
+import DayStreak from '@/components/DayStreak.vue';
+import TotalPoints from '@/components/TotalPoints.vue';
+
 export default {
   name: 'FrontPage',
   components: {
@@ -57,7 +58,7 @@ export default {
     const router = useRouter();
     const name = inject('name');
     const totalPoints = ref(0);
-    
+
 
     const goToMainSite = () => {
       router.push('/TransportComponent');
