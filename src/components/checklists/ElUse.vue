@@ -56,7 +56,9 @@ export default {
   methods: {
     async fetchChecklistItems() {
       try {
-        const response = await fetch(`http://localhost:3000/api/checklists/eluse/${this.userLevel}`);
+        // Antag at category_id for 'eluse' er 1
+        const categoryId = 1;
+        const response = await fetch(`http://localhost:3000/api/checklists/${categoryId}/${this.userLevel}`);
         const data = await response.json();
         this.checklistItems = data;
       } catch (error) {
@@ -84,7 +86,6 @@ export default {
   background-color: #E9E5E5;
   width: 100%;
   padding: 0;
-
 }
 
 .question {
@@ -109,10 +110,6 @@ export default {
 
 .v-row {
   margin-top: 20px;
-}
-
-.v-label {
-  color: black;
 }
 
 .v-label {

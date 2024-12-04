@@ -54,7 +54,9 @@ export default {
   methods: {
     async fetchChecklistItems() {
       try {
-        const response = await fetch(`http://localhost:3000/api/checklists/transport/${this.userLevel}`);
+        // Antag at category_id for 'transport' er 2
+        const categoryId = 2;
+        const response = await fetch(`http://localhost:3000/api/checklists/${categoryId}/${this.userLevel}`);
         const data = await response.json();
         this.checklistItems = data;
       } catch (error) {

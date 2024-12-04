@@ -37,13 +37,16 @@
 
 <script>
 import { useRouter } from 'vue-router';
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, watch } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
   name: 'FrontPage',
   setup() {
     const router = useRouter();
-    const user = ref({ name: '', level: 0, points: 0 });
+    const store = useStore();
+    const user = ref(store.getters.getUserInfo);
+    const levelImage = ref('');
 
     const fetchUserData = async () => {
       try {
@@ -54,7 +57,7 @@ export default {
           }
         });
         const data = await response.json();
-        user.value = data;
+        store.dispatch('setUserInfo', data);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -68,18 +71,23 @@ export default {
       router.push('/TransportComponent');
     };
 
-    const levelImage = computed(() => {
+    const updateLevelImage = () => {
       switch (user.value.level) {
         case 1:
-          return '/Images/frø Level 1.png';
+          levelImage.value ('@/Images/frø Level 1.png');
+          break;
         case 2:
-          return '@/Images/root Level 2.png';
+          levelImage.value ('@/Images/root Level 2.png');
+          break;
         case 3:
-          return '@/Images/tree Level 3.png';
+          levelImage.value ('@/Images/tree Level 3.png');
+          break;
         default:
-          return '@/Images/tree Level 4.png';
+          levelImage.value ('@/Images/tree Level 4.png');
       }
-    });
+    };
+
+    watch(() => user.value.level, updateLevelImage);
 
     return { goToMainSite, user, levelImage };
   },
