@@ -55,7 +55,9 @@ export default {
   methods: {
     async fetchChecklistItems() {
       try {
-        const response = await fetch(`http://localhost:3000/api/checklists/foodwaste/${this.userLevel}`);
+        // Antag at category_id for 'foodwaste' er 3
+        const categoryId = 3;
+        const response = await fetch(`http://localhost:3000/api/checklists/${categoryId}/${this.userLevel}`);
         const data = await response.json();
         this.checklistItems = data;
       } catch (error) {
@@ -76,7 +78,6 @@ export default {
   margin: 10px;
   padding: 20px;
   border-radius: 10px;
-
 }
 
 .foodwaste {
@@ -112,6 +113,4 @@ export default {
 .custom-checkbox input:checked ~ .v-input__control .v-input__slot {
   background-color: #a6c9a8;
 }
-
-
 </style>
