@@ -1,5 +1,6 @@
 <template>
   <NavComponent />
+  <MenuComponent />
   <v-app class="energy-consumption" id="energy-consumption">
     <v-container  :style="{ backgroundColor: '#E9E5E5', borderRadius: '25px',  width: '395px', marginBottom: '24px'}">
 
@@ -15,21 +16,21 @@
 
       <ArrowComponent nextRoute="/genbrugeComponent" previousRoute="/transportComponent" />
 
-      <PointDisplay :points="totalPoints" :style="{background: '#1E7F85', borderRadius:'20px'}" />
+
     </v-container>
   </v-app>
 </template>
 
 <script>
 import CheckList from '../features/CheckList.vue';
-import PointDisplay from '../features/PointDisplay.vue';
 import NavComponent from '../navigation/NavComponent.vue';
 import ArrowComponent from '../navigation/ArrowComponent.vue';
+import MenuComponent from '../navigation/MenuComponent.vue';
 
 export default {
   name: 'ElUse',
   components: {
-    PointDisplay,
+    MenuComponent,
     CheckList,
     NavComponent,
     ArrowComponent,

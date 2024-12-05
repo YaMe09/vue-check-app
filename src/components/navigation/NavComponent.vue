@@ -1,113 +1,85 @@
 <template>
-  <v-container class="nav" :style="{ backgroundColor: '#E9E5E5', padding: '0', margin:'0' }">
-    <br />
-    <v-toolbar app :style="{ backgroundColor: '#E9E5E5' }">
-      <v-col class="d-flex align-center">
-        <router-link to="/frontPage">
-          <img class="right" src="@/images/heroicons_home-20-solid.svg" />
-        </router-link>
-
-        <router-link to="/info">
-          <img class="righ" src="@/images/info.svg" />
-        </router-link>
-      </v-col>
+  <v-app>
+    <v-app-bar app color="#E9E5E5" flat>
+      <v-btn icon @click.stop="drawer = !drawer">
+        <img src="@/images/hamburger-button.svg" alt="Menu" class="burger-icon" />
+      </v-btn>
+      <v-toolbar-title>App Title</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-title>
-        <v-row>
-          <v-col class="d-flex align-center">
-            <!-- Tom kolonne for at centrere titlen -->
-          </v-col>
-        </v-row>
-      </v-toolbar-title>
-      <v-col class="d-flex align-center">
-        <LevelDisplay />
-      </v-col>
-    </v-toolbar>
+      <LevelDisplay />
+    </v-app-bar>
 
-    <br />
-    <v-container class="anden-nav">
-      <router-link to="/transportComponent" @click="setActive('transportComponent')">
-        <img :class="{ active: activeImage === 'transportComponent' }" src="@/images/transport.svg" />
-      </router-link>
+    <v-navigation-drawer v-model="drawer" app temporary>
+      <v-list>
+        <v-list-item @click="$router.push('/frontPage')">
+          <v-list-item-title>Front Page</v-list-item-title>
+        </v-list-item>
+        <v-list-item @click="$router.push('/info')">
+          <v-list-item-title>Info</v-list-item-title>
+        </v-list-item>
+        <v-list-item @click="$router.push('/transportComponent')">
+          <v-list-item-title>Transport</v-list-item-title>
+        </v-list-item>
+        <v-list-item @click="$router.push('/elUse')">
+          <v-list-item-title>El Use</v-list-item-title>
+        </v-list-item>
+        <v-list-item @click="$router.push('/genbrugeComponent')">
+          <v-list-item-title>Genbruge</v-list-item-title>
+        </v-list-item>
+        <v-list-item @click="$router.push('/foodWaste')">
+          <v-list-item-title>Food Waste</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
 
-      <router-link to="/elUse" @click="setActive('elUse')">
-        <img :class="{ active: activeImage === 'elUse' }" src="@/images/El-forbruge.svg" />
-      </router-link>
-
-      <router-link to="/genbrugeComponent" @click="setActive('genbrugeComponent')">
-        <img :class="{ active: activeImage === 'genbrugeComponent' }" src="@/images/Genbruge.svg" />
-      </router-link>
-
-      <router-link to="/foodWaste" @click="setActive('foodWaste')">
-        <img :class="{ active: activeImage === 'foodWaste' }" src="@/images/Madspile.svg" />
-      </router-link>
-    </v-container>
-  </v-container>
+    
+  </v-app>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
+import { ref } from 'vue';
 import LevelDisplay from '../features/LevelDisplay.vue';
 
-export default defineComponent({
+export default {
   name: 'NavComponent',
   components: {
     LevelDisplay,
   },
   setup() {
-    const activeImage = ref('');
-
-    const setActive = (image) => {
-      activeImage.value = image;
-    };
+    const drawer = ref(false);
 
     return {
-      activeImage,
-      setActive,
+      drawer,
     };
   },
-});
+};
 </script>
 
 <style scoped>
 .v-container {
   padding: 0;
 }
-.left,
-.lef {
-  width: 35px;
-  margin-left: 15px;
+
+.burger-icon {
+  width: 24px;
+  height: 24px;
 }
-.lef {
-  width: 55px;
+
+.v-application--wrap {
+  margin: 0 !important;
+  padding: 0 !important;
 }
-.right,
-.righ {
-  width: 45px; /* Juster størrelserne som ønsket */
-  padding-top: 5px;
-  margin-left: 15px;
+
+.v-application__wrap {
+  min-height: 100vh !important; /* Sørg for, at applikationen fylder hele højden */
 }
+
+.v-navigation-drawer {
+  height: 100vh !important; /* Sørg for, at navigationen fylder hele højden */
+}
+
 .anden-nav {
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  background-color: #fff;
-  height: 92px;
-  border-radius: 18px;
-  border: solid 1px #e4e5e4;
-  box-shadow: #fff 2px 2px 2px;
-  opacity: 0.9;
-}
-
-.anden-nav img {
-  width: 50px;
-  padding-top: 5px;
-  transition: all 0.3s ease;
-}
-
-.active {
-  transform: scale(1.2);
-  border: 5px solid #D3BE03;
-  box-shadow: 0 0 10px rgba(189, 185, 185, 0.5);
 }
 </style>

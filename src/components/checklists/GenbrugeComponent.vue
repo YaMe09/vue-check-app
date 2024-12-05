@@ -1,5 +1,6 @@
 <template>
   <NavComponent/>
+  <MenuComponent/>
   <v-app class="genbruge" id="genbruge">
     <v-container fluid fill-height :style="{ backgroundColor: '#E9E5E5', borderRadius: '25px', padding: '24px', width: '395px', marginBottom: '24px'}">
       <v-col cols="12" md="8" lg="4" class="text-center">
@@ -13,8 +14,6 @@
       />
 
       <ArrowComponent nextRoute="/foodWaste" previousRoute="/elUse" />
-
-      <PointDisplay :points="totalPoints" />
     </v-container>
   </v-app>
 </template>
@@ -22,12 +21,12 @@
 <script>
 import CheckList from '../features/CheckList.vue';
 import NavComponent from '../navigation/NavComponent.vue';
-import PointDisplay from '../features/PointDisplay.vue';
 import ArrowComponent from '../navigation/ArrowComponent.vue';
+import MenuComponent from '../navigation/MenuComponent.vue';
 
 export default {
   components: {
-    PointDisplay,
+    MenuComponent,
     CheckList,
     NavComponent,
     ArrowComponent,

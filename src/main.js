@@ -15,6 +15,7 @@ import UserPage from './components/user/UserPage.vue';
 import UserList from './components/user/UserList.vue';
 import LogIn from './components/user/LogIn.vue';
 import LevelDisplay from './components/features/LevelDisplay.vue';
+import MenuComponent from './components/navigation/MenuComponent.vue';
 import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
@@ -42,7 +43,9 @@ const router = createRouter({
     { path: '/elUse', name: 'ElUse', component: ElUse},
     { path: '/levelDisplay', name: 'LevelDisplay', component: LevelDisplay},
     { path: '/arrowComponent', name: 'ArrowComponent', component: ArrowComponent},
-  ],
+    { path: '/menuComponent', name: 'MenuComponent', component: MenuComponent},
+
+  ]
 });
 
 const app = createApp(App);
