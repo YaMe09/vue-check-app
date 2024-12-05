@@ -1,28 +1,69 @@
 <template>
-  <div class="user-level-display">
-    <p class="level-text">Level {{ userLevel }}</p>
+  <div class="user-info-display">
+    <div class="level-display">
+      <p class="info-text">Level: {{ userLevel }}</p>
+    </div>
+    <div class="points-display">
+      <img src="@/images/drop.svg" alt="Points" class="drop-icon" />
+      <span class="points-text">{{ userPoints }}</span>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   computed: {
+    ...mapGetters({
+      userInfo: 'getUserInfo'
+    }),
     userLevel() {
-      return this.$store.getters.getUserInfo.level; // Get user level from Vuex store
+      return this.userInfo.level; // Get user level from Vuex store
+    },
+    userPoints() {
+      return this.userInfo.points; // Get user points from Vuex store
     }
   }
 };
 </script>
 
 <style scoped>
-.user-level-display {
+.user-info-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   font-weight: bold;
   margin-top: 10px;
   color: black;
+  background-color: #F7F6F6;
+  padding:20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.level-text {
+.level-display {
+  margin-right: 20px; /* Tilføj margin for at give lidt plads mellem niveau og point */
+}
+
+.info-text {
   font-size: 18px;
+  font-weight: lighter;
+}
+
+.points-display {
+  display: flex;
+  align-items: center;
+}
+
+.drop-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.points-text {
+  font-size: 20px;
+  font-weight: bold;
 }
 </style>

@@ -1,11 +1,13 @@
 <template>
-  <v-row align="center" justify="space-between">
-    <v-col cols="auto" background color: >
-      <v-btn @click="goToPrevious" class="navigation-button">forrige</v-btn>
+  <v-row align="center" justify="space-between" class="navigation-container">
+    <v-col cols="auto" class="navigation-col" @click="goToPrevious">
+      <img src="@/images/arrow left.svg" alt="Forrige" class="arrow-icon" />
+      <span class="navigation-text1">forrige</span>
     </v-col>
     <v-spacer />
-    <v-col cols="auto">
-      <v-btn @click="goToNext" class="navigation-button">Næste</v-btn>
+    <v-col cols="auto" class="navigation-col" @click="goToNext">
+      <span class="navigation-text">Næste</span>
+      <img src="@/images/arrow right.svg" alt="Næste" class="arrow-icon" />
     </v-col>
   </v-row>
 </template>
@@ -34,11 +36,30 @@ export default {
 </script>
 
 <style scoped>
-.navigation-button {
+.navigation-container {
+  width: 100%; /* Fuld bredde */
   background-color: white; /* Baggrundsfarve */
-  color: green; /* Tekstfarve */
+  padding: 10px; /* Tilføj padding for at give lidt plads omkring elementerne */
+  margin: 10px 0; /* Tilføj margin for at give lidt plads omkring elementet */
+}
 
-  padding: 10px 20px;
+.navigation-col {
+  display: flex;
+  align-items: center;
+
+
+}
+
+.navigation-text {
+  color: green; /* Tekstfarve */
   font-size: 16px;
+  margin: 0 8px; /* Tilføj margin for at give lidt plads omkring teksten */
+}
+.navigation-text1{
+  color: #76B624;
+}
+.arrow-icon {
+  width: 16px;
+  height: 16px;
 }
 </style>
