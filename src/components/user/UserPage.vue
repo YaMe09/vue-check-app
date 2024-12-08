@@ -13,7 +13,22 @@
         <LevelDisplay /> <!-- Tilføj denne linje -->
       </v-col>
     </v-container>
-
+    <v-row>
+      <v-col cols="2" class="justify-center">
+        <img
+        v-if="points > 0"
+          class="drop"
+          src="../Images/drop.svg"
+          alt="Drop Image"
+          :style="{ width: '30px', marginLeft: 'auto', marginRight: 'auto',  border: '2px solid #3E7A00', borderRadius: '50%'}"
+          @click="startWatering"
+        />
+      </v-col>
+      <br />
+      <v-col cols="2" class="træ">
+        <img src="../Images/træ.svg" alt="Tree Image" :style="{ marginLeft: '-30px', height: treeHeight + 'px' }" />
+      </v-col>
+    </v-row>
     <v-container class="carbon-reduction">
       <v-row align="center" justify="center">
         <v-col cols="12" class="text-center">
@@ -40,8 +55,26 @@ export default {
     const name = inject('name');
     const password = inject('password');
     const router = useRouter();
-    return { name, password, router };
-  },
+  const treeHeight = ref(70);
+
+  // Vand træet med alle dråber
+  const startWatering = async () => {
+    if (points.value <= 0) {
+      alert('Ingen dråber at bruge!');
+      return;
+    }
+
+    const growth = points.value * 0.3; // Calculate growth
+    treeHeight.value += growth; // Update tree height
+
+    // Reset points in the store and backend
+    await store.dispatch('updatePoints', 0); // Add method for API call to update points
+
+    alert(`Du har brugt alle dine dråber! Træet er nu ${treeHeight.value}px højt.`);
+  };
+
+  return { name, password, router, treeHeight, startWatering };
+},
   data() {
     return {
       requiredPoints: 100, // Krav til point for at gå videre til næste niveau
