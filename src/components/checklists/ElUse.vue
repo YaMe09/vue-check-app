@@ -2,8 +2,8 @@
   <NavComponent />
   <MenuComponent />
   <v-app class="energy-consumption" id="energy-consumption">
-    <v-container  :style="{ backgroundColor: '#E9E5E5', borderRadius: '25px',  width: '395px', marginBottom: '24px'}">
-
+    <v-container  align="center" justify="center" :style="{ backgroundColor: '#E9E5E5', width: '100%', marginBottom: '24px'}">
+      <br/>
       <v-col cols="12" md="8" lg="4" class="text-center">
         <h2 class="question">Hvordan har dit El-forbrug været?</h2>
       </v-col>
@@ -75,12 +75,9 @@ export default {
 </script>
 
 <style scoped>
-.v-container {
-  justify-content: center;
-  margin: 10px;
-  background-color: #E9E5E5;
-  padding: 20px;
-  border-radius: 10px;
+.award-badge{
+background:#1E7F85;
+border-radius: 25px;
 }
 
 .energy-consumption {
@@ -109,11 +106,51 @@ export default {
   color: white;
 }
 
-.v-row {
-  margin-top: 20px;
+
+
+.custom-checkbox input:checked ~ .v-input__control .v-input__slot {
+  background-color: #a6c9a8;
 }
 
 .v-label {
   color: black;
 }
+
+
+div[data-v-617dcb71]{
+ background: #1E7F85;
+
+}
+
+.v-list.v-theme--light.v-list--density-default.v-list--one-line{
+    background: #1E7F85;
+    padding: 0;
+    /*overflow: none;
+    padding: 8px 0; }
+    background: rgba(var(--v-theme-surface));
+    height:550px; */
+}
+
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+  .question {
+    font-size: 1.5rem; /* Smaller font size for mobile */
+  }
+
+  .checklist-card {
+    padding: 8px; /* Adjust padding for mobile */
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .question {
+    font-size: 2rem; /* Medium font size for tablets */
+  }
+
+  .checklist-card {
+    padding: 10 px; /* Maintain padding for tablets */
+  }
+}
+
 </style>
