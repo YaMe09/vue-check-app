@@ -1,13 +1,7 @@
 <template>
-  <v-container>
-    <v-col
-      cols="12"
-      md="8"
-      lg="4"
-      :style="{ borderRadius: '25px', width: '485px' }"
-    >
-      <v-list :style="{flexDirection: 'column', alignItems: 'center'}">
-        <v-list-item-group>
+  <v-container :style="{  borderRadius: '25px', padding: '22px', width: '100%', maxWidth: '380px'}">
+
+
           <v-list-item
             v-for="item in checklistItems"
             :key="item.id"
@@ -21,9 +15,8 @@
             </v-list-item-content>
 
           </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-col>
+
+
   </v-container>
 </template>
 
@@ -78,15 +71,25 @@ export default {
 <style scoped>
 .v-container {
   justify-content: center;
-  padding: 10px; /* Padding inside the container */
+  /* Padding inside the container */
   border-radius: 10px; /* Rounded corners */
 
 }
+.center-text {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   margin-top: 35px;
+}
 .checklist-card {
-  margin: 12px 0; /* Margin for each checklist item */
-  padding: 10px; /* Padding inside the card for touch */
-  border: 1px ; /* Border around the checklist card */
-  box-shadow: #a6c9a8;
+  margin: 12px 0; /* Margin for each checklist item */ /* Padding inside the card for touch */
+  display: flex;
+  height: 90px;
+  align-items: center;
+  justify-content: center;
   transition: background-color 0.3s ease; /* Smooth transition */
 }
 .checklist-card.selected {
@@ -99,8 +102,11 @@ export default {
 .custom-checkbox input:checked ~ .v-input__control .v-input__slot {
   background-color: #a6c9a8;
 }
+
 .v-list{
-  background: none;
+   overflow: none;
+    padding: 0;
+    background: none;
 }
 
 </style>
