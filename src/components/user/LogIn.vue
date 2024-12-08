@@ -1,8 +1,7 @@
 <template>
-
-
+  <br/> <br/> <br/> <br/>
   <form @submit.prevent="login" class="forms">
-    <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+    <br/> <br/> <br/> <br/>
     <h2 class="question">Login</h2>
     <br/> <br/>
     <input
