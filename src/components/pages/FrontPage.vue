@@ -1,4 +1,5 @@
 <template>
+  <NavComponent/>
   <v-container :style="{ backgroundColor: '#E9E5E5' }" class="front-page" align="center">
     <br />
     <!-- Logo træ -->
@@ -11,19 +12,16 @@
     <br>
     <!-- New "Din score" section with image underneath -->
     <div class="score-section">
-      <h2 class="score-text">{{ user.name }}</h2>
+      <h2 class="score-text">{{ userName }}</h2>
       <br />
 
-      <p class="description-text">Level: {{ user.level }}</p>
-      <p class="description-text">Dropper: {{ user.points }}</p>
+      <p class="description-text">Level: {{ userLevel }}</p>
+      <p class="description-text">Dropper: {{ userPoints }}</p>
       <br />
     </div>
 
      <!-- Subtitle text -->
      <h3 class="subtitle-text">Gør bæredygtige vaner let som en leg</h3>
-
-    <!-- Centered secondary logo -->
-    <img :src="levelImage" alt="level img" class="secondary-logo" />
 
     <!-- New section with question text and button -->
     <v-container class="check-habits-section">
@@ -39,9 +37,13 @@
 import { useRouter } from 'vue-router';
 import { ref, onMounted, watch } from 'vue';
 import { useStore } from 'vuex';
+import NavComponent from '../navigation/NavComponent.vue';
 
 export default {
   name: 'FrontPage',
+  components: {
+    NavComponent,
+  },
   setup() {
     const router = useRouter();
     const store = useStore();
@@ -57,7 +59,7 @@ export default {
           }
         });
         const data = await response.json();
-        store.dispatch('setUserInfo', data);
+        store.commit('setUserInfo', data);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -74,22 +76,22 @@ export default {
     const updateLevelImage = () => {
       switch (user.value.level) {
         case 1:
-          levelImage.value ('@/Images/frø Level 1.png');
+          levelImage.value = '@/Images/frø Level 1.png';
           break;
         case 2:
-          levelImage.value ('@/Images/root Level 2.png');
+          levelImage.value = '@/Images/root Level 2.png';
           break;
         case 3:
-          levelImage.value ('@/Images/tree Level 3.png');
+          levelImage.value = '@/Images/tree Level 3.png';
           break;
         default:
-          levelImage.value ('@/Images/tree Level 4.png');
+          levelImage.value = '@/Images/tree Level 4.png';
       }
     };
 
     watch(() => user.value.level, updateLevelImage);
 
-    return { goToMainSite, user, levelImage };
+    return { goToMainSite, user, levelImage, userName: user.value.name, userLevel: user.value.level, userPoints: user.value.points };
   },
 };
 </script>

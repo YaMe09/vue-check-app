@@ -54,6 +54,7 @@ export default {
   color: green; /* Tekstfarve */
   font-size: 16px;
   margin: 0 8px; /* Tilføj margin for at give lidt plads omkring teksten */
+  font-weight: bold;
 }
 .navigation-text1{
   color: #76B624;

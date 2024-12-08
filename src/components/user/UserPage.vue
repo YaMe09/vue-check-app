@@ -1,4 +1,5 @@
 <template>
+  <NavComponent/>
   <v-container :style="{ backgroundColor: '#E9E5E5' }">
     <br/>
     <br/><br/><br/><br/>
@@ -8,7 +9,7 @@
       <v-col cols="12" md="8" lg="4" class="text-center">
         <h2 class="question">Opsummering af dine point</h2>
         <p class="description-text">Velkommen til din side {{ userName }}</p>
-        <p class="total-points">Samlede droper: {{ totalPoints }}</p>
+
 
         <LevelDisplay /> <!-- Tilføj denne linje -->
       </v-col>
@@ -20,7 +21,6 @@
           <v-btn rounded="xl" size="x-large" @click="saveUserData" class="home-button" block :style="{background:'#3E7A00'}">Gem data</v-btn><br/>
           <v-btn rounded="xl" size="x-large" @click="showUserList" class="back-button" block outlined :style="{border:'5px solid #3E7A00'}">Show users</v-btn><br/>
           <v-btn v-if="totalPoints >= requiredPoints" rounded="xl" size="x-large" @click="navigateToTransport" class="next-button" block :style="{background:'#3E7A00'}">Spil videre</v-btn><br/>
-          <v-btn rounded="xl" size="x-large" @click="logout" class="logout-button" block outlined :style="{border:'5px solid #3E7A00'}">Log ud</v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -31,10 +31,12 @@
 import LevelDisplay from '../features/LevelDisplay.vue'; // Importer UserLevelDisplay
 import { inject } from 'vue';
 import { useRouter } from 'vue-router';
+import NavComponent from '../navigation/NavComponent.vue';
 
 export default {
   components: {
-    LevelDisplay // Registrer UserLevelDisplay
+    LevelDisplay,
+    NavComponent, // Registrer UserLevelDisplay
   },
   setup() {
     const name = inject('name');
@@ -44,7 +46,7 @@ export default {
   },
   data() {
     return {
-      requiredPoints: 100, // Krav til point for at gå videre til næste niveau
+      requiredPoints: 500, // Krav til point for at gå videre til næste niveau
       token: localStorage.getItem('token') || '', // Hent token fra localStorage
       userName: localStorage.getItem('userName') || '', // Hent brugerens navn fra localStorage
       checklists: [], // Tilføj denne linje

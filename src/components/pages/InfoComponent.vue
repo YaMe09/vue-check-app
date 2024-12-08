@@ -1,7 +1,7 @@
 <template>
   <div v-if="isVisible">
     <br/>
-    <img src="../images/gg_close.svg" class="left" @click="closeInfo" />
+    <img src="@/images/gg_close.svg" class="left" @click="closeInfo" />
     <v-container class="info">
       <br/><br/><br/><br/>
       <v-card-text>
