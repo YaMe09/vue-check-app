@@ -20,7 +20,7 @@ import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
-
+import Register from './components/user/Register.vue';
 const vuetifyInstance = createVuetify({
   components,
   directives,
@@ -44,7 +44,7 @@ const router = createRouter({
     { path: '/levelDisplay', name: 'LevelDisplay', component: LevelDisplay},
     { path: '/arrowComponent', name: 'ArrowComponent', component: ArrowComponent},
     { path: '/menuComponent', name: 'MenuComponent', component: MenuComponent},
-
+    { path: '/register', name: 'Register', component: Register},
   ]
 });
 
