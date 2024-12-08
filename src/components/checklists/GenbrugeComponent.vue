@@ -72,47 +72,65 @@ export default {
 
 <style scoped>
 .v-container {
-  justify-content: center;
-  margin: 10px;
-  padding: 20px;
-  border-radius: 10px;
+ padding: 0;
 }
 
-.genbruge {
-  background-color: #E9E5E5;
-  width: 100%;
-  padding: 0;
-}
 
 .question {
-  font-weight: bold;
-  margin-top: 10px;
-  margin-bottom: 24px;
-  color: black;
+ font-weight: bold;
+ margin-top: 10px;
+ margin-bottom: 24px;
+}
+.selected {
+ background-color: #4CAF50 !important;
+ color: white;
+}
+.disabled {
+ opacity: 0.6;
+ pointer-events: none;
+}
+.award-badge {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin: 20px auto;
+ border-radius: 18px;
+ opacity: 0.9px;
+}
+.award-badge .v-btn {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 100%; /* Gør knappen fuld bredde */
+}
+.v-list-item-subtitle {
+ font-size: 16px;
+ color: red;
+}
+.v-list-item-title {
+ font-size: 20px;
+ color: black;
+ margin-top: 5px;
+}
+.v-list-item-action {
+ width: 0;
+ height: 0;
+}
+.v-list-item--density-default.v-list-item--one-line {
+ padding: 15px;
+ margin-top: 8px;
+ margin-bottom: 12px;
+ justify-content: center;
+}
+.award-badge[data-v-db81f2f0]{
+ margin: 0;
+}
+.award-badge{
+ background-color: #8FCACA;
+ border-radius: 25px;
 }
 
-.checklist-card {
-  margin: 3px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
 
-.checklist-card.selected {
-  background-color: #4caf50;
-  color: white;
-}
-
-.v-row {
-  margin-top: 20px;
-}
-
-.custom-checkbox input:checked ~ .v-input__control .v-input__slot {
-  background-color: #a6c9a8;
-}
-
-.v-label {
-  color: black;
-}
 </style>
+
+
