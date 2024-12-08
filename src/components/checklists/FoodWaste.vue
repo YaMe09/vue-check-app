@@ -2,7 +2,7 @@
   <NavComponent />
   <MenuComponent />
   <v-app class="foodwaste" id="foodwaste">
-    <v-container fluid fill-height :style="{ backgroundColor: '#E9E5E5', borderRadius: '25px', padding: '24px', width: '395px', marginBottom: '24px'}">
+    <v-container fluid fill-height align="center" justify="center" :style="{ backgroundColor: '#E9E5E5', padding: '24px'}">
       <v-col cols="12" md="8" lg="4" class="text-center">
         <h2 class="question">Hvordan har dit madspild været?</h2>
       </v-col>
@@ -75,15 +75,19 @@ export default {
 <style scoped>
 .v-container {
   justify-content: center;
-  margin: 10px;
-  padding: 20px;
-  border-radius: 10px;
+}
+.award-badge{
+background: #E59182;
+border-radius: 25px;
 }
 
 .foodwaste {
   background-color: #E9E5E5;
   width: 100%;
   padding: 0;
+
+
+
 }
 
 .question {
@@ -112,5 +116,21 @@ export default {
 
 .custom-checkbox input:checked ~ .v-input__control .v-input__slot {
   background-color: #a6c9a8;
+}
+
+.v-label {
+  color: black;
+}
+.v-container[data-v-6c44f5ed] {
+  background: #E59182;
+ padding: 0;
+}
+div[data-v-617dcb71] {
+  background: #E59182;
+  padding: 0;
+}
+.v-col-12{
+  background: #E59182;
+  border-radius: 25px;
 }
 </style>
