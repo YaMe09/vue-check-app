@@ -82,12 +82,35 @@ export default {
       }
 
       try {
-        await store.dispatch('register', {
-          name: register_form.value.name,
-          email: register_form.value.email,
-          phone: register_form.value.phone,
-          password: register_form.value.password,
+        const response = await fetch('http://localhost:3000/api/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: register_form.value.name,
+            email: register_form.value.email,
+            phone: register_form.value.phone,
+            password: register_form.value.password,
+          }),
         });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Registration failed');
+        }
+
+        const data = await response.json();
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('userName', data.user.name);
+        localStorage.setItem('userLevel', data.user.level);
+        localStorage.setItem('totalPoints', data.user.points);
+
+        // Update Vuex state
+        store.commit('setToken', data.token);
+        store.commit('setUserInfo', data.user);
+
+        alert('Registration successful!');
         router.push('/transportComponent');
       } catch (error) {
         alert(error.message || 'Registration failed. Please try again.');

@@ -10,7 +10,6 @@
         <h2 class="question">Opsummering af dine point</h2>
         <p class="description-text">Velkommen til din side {{ userName }}</p>
 
-
         <LevelDisplay /> <!-- Tilføj denne linje -->
       </v-col>
     </v-container>
@@ -91,7 +90,7 @@ export default {
         };
         console.log('Sending payload to backend:', payload); // Debug-udskrift
 
-        const response = await fetch('http://localhost:3000/api/auth/user/points', {
+        const response = await fetch('http://localhost:3000/api/user/points', {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

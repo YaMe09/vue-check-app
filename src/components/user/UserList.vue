@@ -30,7 +30,7 @@ export default {
   methods: {
     async fetchUsers() {
       try {
-        const response = await fetch('http://localhost:3000/api/auth/users-with-points', {
+        const response = await fetch('http://localhost:3000/api/users', {
           method: 'GET',
           headers: {
             'x-access-token': localStorage.getItem('token')

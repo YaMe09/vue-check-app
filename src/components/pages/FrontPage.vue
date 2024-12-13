@@ -29,7 +29,7 @@
       <button class="check-habits-button" @click="goToMainSite">TJEK VANER</button>
     </v-container>
 
-    <br />
+    <br /> 
   </v-container>
 </template>
 
