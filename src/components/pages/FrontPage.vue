@@ -1,6 +1,6 @@
 <template>
   <NavComponent/>
-  <v-container :style="{ backgroundColor: '#E9E5E5' }" class="front-page" align="center">
+  <v-container :style="{ backgroundColor: '#0000' }" class="front-page" align="center">
     <br />
     <!-- Logo træ -->
     <v-container class="logo-container">
@@ -130,17 +130,18 @@ export default {
 .welcome-text {
   font-size: 40px;
   margin-top: 10px;
-  color: #FF5733; /* Change color for h1 */
+  color: #Ffff; /* Change color for h1 */
 }
 
 .score-text {
-  font-size: 28px;
+  font-size: 35px;
   font-weight: bold;
-  color: #33FF57; /* Change color for h2 */
+  color: #3E7A00; /* Change color for h2 */
 }
 
 .subtitle-text {
   font-size: 16px;
+  font-weight:normal;
 }
 
 .points-value, .points-text {

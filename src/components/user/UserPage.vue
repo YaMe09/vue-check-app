@@ -5,12 +5,12 @@
     <br/><br/><br/><br/>
     <h1 class="score-title">Dagens score</h1>
     <br/>
-    <v-container fluid fill-height :style="{ backgroundColor: '#000', width: '100%', padding: '25px' }">
+    <v-container fluid fill-height :style="{ backgroundColor: '', width: '100%', padding: '25px' }">
       <v-col cols="12" md="8" lg="4" class="text-center">
         <h2 class="question">Godt Klaret </h2>
         <p class="description-text"> {{ userName }}</p>
 
-        <LevelDisplay /> <!-- Tilføj denne linje -->
+        <LevelDisplay />
       </v-col>
     </v-container>
 
@@ -119,8 +119,12 @@ export default {
 .score-title {
   text-align: center;
   font-weight: 700;
+  color: aliceblue;
 }
-
+.description-text{
+  color: #3E7A00;
+  font-size: 30px;
+}
 .score-value {
   text-align: center;
   font-weight: 700;
@@ -140,15 +144,5 @@ export default {
   gap: 1em;
 }
 
-.back-button,
-.home-button,
-.next-button,
-.logout-button {
-  font-size: 1em;
-  color: #fff;
-  background-color: #4caf50;
-  border-radius: 5px;
-  padding: 0.5em 1em;
-  width: 100%;
-}
+
 </style>
