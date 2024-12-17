@@ -29,7 +29,7 @@
       <button class="check-habits-button" @click="goToMainSite">TJEK VANER</button>
     </v-container>
 
-    <br /> 
+    <br />
   </v-container>
 </template>
 
@@ -58,6 +58,10 @@ export default {
             'x-access-token': localStorage.getItem('token')
           }
         });
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Error fetching user data: ${errorText}`);
+        }
         const data = await response.json();
         store.commit('setUserInfo', data);
       } catch (error) {
@@ -126,6 +130,13 @@ export default {
 .welcome-text {
   font-size: 40px;
   margin-top: 10px;
+  color: #FF5733; /* Change color for h1 */
+}
+
+.score-text {
+  font-size: 28px;
+  font-weight: bold;
+  color: #33FF57; /* Change color for h2 */
 }
 
 .subtitle-text {
@@ -180,10 +191,6 @@ export default {
 .description-text {
   font-size: 24px;
   font-weight: 600;
-}
-.score-text {
-  font-size: 28px;
-  font-weight: bold;
 }
 ul {
   list-style-type: none;

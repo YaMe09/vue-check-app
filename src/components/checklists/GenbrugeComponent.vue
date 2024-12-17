@@ -1,13 +1,14 @@
 <template>
   <NavComponent/>
   <MenuComponent/>
-  <v-app class="genbruge" id="genbruge">
-    <v-container fluid fill-height :style="{ backgroundColor: '#E9E5E5', borderRadius: '25px', padding: '24px', width: '395px', marginBottom: '24px'}">
+  <v-app >
+    <v-container fluid fill-height  :style="{ backgroundColor: '#000', width: '100%', padding: '24px'}">
+      <br/>
       <v-col cols="12" md="8" lg="4" class="text-center">
-        <h2 class="question">Hvordan har din genbrug været?</h2>
+        <h2 class="question">Husholdning</h2>
       </v-col>
-
-      <CheckList :style="{ backgroundColor: '#8FCACA', width: '100%' }"
+      <CheckList
+        :style="{ width: '100%' }"
         :checklistItems="checklistItems"
         :selectedItems="selectedItems"
         @update:selectedItems="updateSelectedItems"
@@ -72,65 +73,14 @@ export default {
 
 <style scoped>
 .v-container {
- padding: 0;
+  background: #000;
+  color: #85C7C7;
 }
-
 
 .question {
- font-weight: bold;
- margin-top: 10px;
- margin-bottom: 24px;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 24px;
+  color: #85C7C7;
 }
-.selected {
- background-color: #4CAF50 !important;
- color: white;
-}
-.disabled {
- opacity: 0.6;
- pointer-events: none;
-}
-.award-badge {
- display: flex;
- align-items: center;
- justify-content: center;
- margin: 20px auto;
- border-radius: 18px;
- opacity: 0.9px;
-}
-.award-badge .v-btn {
- display: flex;
- justify-content: center;
- align-items: center;
- width: 100%; /* Gør knappen fuld bredde */
-}
-.v-list-item-subtitle {
- font-size: 16px;
- color: red;
-}
-.v-list-item-title {
- font-size: 20px;
- color: black;
- margin-top: 5px;
-}
-.v-list-item-action {
- width: 0;
- height: 0;
-}
-.v-list-item--density-default.v-list-item--one-line {
- padding: 15px;
- margin-top: 8px;
- margin-bottom: 12px;
- justify-content: center;
-}
-.award-badge[data-v-db81f2f0]{
- margin: 0;
-}
-.award-badge{
- background-color: #8FCACA;
- border-radius: 25px;
-}
-
-
 </style>
-
-

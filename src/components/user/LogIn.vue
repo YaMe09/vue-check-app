@@ -1,9 +1,9 @@
 <template>
-  <v-container class="forside" fill-height>
+  <v-container class="log-in" fill-height>
     <v-row align="center" justify="center">
       <v-col>
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        <h1 :style="{ fontWeight: '700' }">Login</h1>
+        <h2 :style="{ fontWeight: '700' }">Login</h2>
         <br />
         <v-col>
           <v-text-field
@@ -31,8 +31,19 @@
           ></v-text-field>
         </v-col>
         <br /><br />
-        <v-btn @click="loginUser" class="login-button">Login</v-btn>
-        <v-btn @click="navigateBack" class="back-button">Tilbage</v-btn>
+        <v-btn rounded="xl"
+           size="x-large"
+           variant="flat"
+           @click="loginUser" class="login-button"
+           :style="{ backgroundColor: 'rgb(62, 122, 0)', width: '100%', color:'#fff', maxWidth:'400px', borderRadius: '1rem' }">Login
+          </v-btn>
+          <v-btn rounded="xl"
+           size="x-large"
+           variant="flat"
+            @click="navigateBack" class="back-button"
+           :style="{ backgroundColor: '#fff', border: '2px solid rgb(62, 122, 0)', color: 'rgb(62, 122, 0)', width: '100%', maxWidth:'400px', borderRadius: '1rem' }">Registrere
+          </v-btn>
+
       </v-col>
     </v-row>
   </v-container>
@@ -43,8 +54,12 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 
+
 export default {
   name: 'LogIn',
+  components: {
+   
+  },
   setup() {
     const name = ref('');
     const password = ref('');
@@ -93,7 +108,7 @@ export default {
     };
 
     const navigateBack = () => {
-      router.push('/app');
+      router.push('/register');
     };
 
     return {
@@ -107,14 +122,36 @@ export default {
 </script>
 
 <style scoped>
-.forside {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: #fff;
-  background-image: url('./images/forside.svg');
+.log-in{
+  display: flex;
+  min-height: 100vh;
+  background: #000 url(@/images/forside.svg);
   background-size: cover;
   background-position: center;
-  margin-top: 60px;
+  justify-content: center;
+  align-items: center;
+}
+h2 {
+  color:#fff;
+  text-align: center; /* Center the heading */
+  margin-bottom: 1.5rem; /* Space below the heading */
+}
+
+input {
+  appearance: none;
+  border: none;
+  outline: none;
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem 0rem;
+}
+
+input::placeholder {
+  color: rgb(62, 122, 0);
 }
 
 .login-button, .back-button {

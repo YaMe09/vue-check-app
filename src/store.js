@@ -49,7 +49,7 @@ const store = createStore({
     },
     async setUserInfo({ commit }) {
       try {
-        const response = await fetch('http://localhost:3000/api/auth/user', {
+        const response = await fetch('http://localhost:3000/api/user', {
           method: 'GET',
           headers: {
             'x-access-token': localStorage.getItem('token')

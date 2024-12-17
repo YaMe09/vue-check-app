@@ -1,5 +1,5 @@
 <template>
-  <v-container :style="{  borderRadius: '25px', padding: '22px', width: '100%', maxWidth: '380px'}">
+  <v-container :style="{ padding: '22px', width: '100%', maxWidth: '380px'}">
 
 
           <v-list-item
@@ -72,17 +72,15 @@ export default {
 .v-container {
   justify-content: center;
   /* Padding inside the container */
-  border-radius: 10px; /* Rounded corners */
 
 }
 .center-text {
   text-align: center;
   display: flex;
   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-
-   margin-top: 35px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 35px;
 }
 .checklist-card {
   margin: 12px 0; /* Margin for each checklist item */ /* Padding inside the card for touch */
@@ -96,17 +94,14 @@ export default {
   background-color: #4caf50; /* Green color when selected */
   color: white; /* Text color when selected */
 }
-.custom-checkbox {
-  color: #4caf50; /* Checkbox color */
-}
-.custom-checkbox input:checked ~ .v-input__control .v-input__slot {
-  background-color: #a6c9a8;
-}
+
 
 .v-list{
    overflow: none;
     padding: 0;
     background: none;
 }
-
+.v-list-item.v-list-item--link.v-theme--light.v-list-item--density-default.rounded-0.v-list-item--variant-text.checklist-card{
+  background: 'none';
+}
 </style>

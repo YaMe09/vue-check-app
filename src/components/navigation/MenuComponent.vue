@@ -1,22 +1,21 @@
 <template>
-    <v-container class="anden-nav">
-        <router-link to="/transportComponent" @click="setActive('transportComponent')">
-          <img :class="{ active: activeImage === 'transportComponent' }" src="@/images/transport.svg" />
-        </router-link>
+  <v-container class="anden-nav">
+    <router-link to="/transportComponent" @click="setActive('transportComponent')">
+      <img :class="{ active: activeImage === 'transportComponent' }" src="@/images/transport.svg" />
+    </router-link>
 
-        <router-link to="/elUse" @click="setActive('elUse')">
-          <img :class="{ active: activeImage === 'elUse' }" src="@/images/El-forbruge.svg" />
-        </router-link>
+    <router-link to="/elUse" @click="setActive('elUse')">
+      <img :class="{ active: activeImage === 'elUse' }" src="@/images/El-forbruge.svg" />
+    </router-link>
 
-        <router-link to="/genbrugeComponent" @click="setActive('genbrugeComponent')">
-          <img :class="{ active: activeImage === 'genbrugeComponent' }" src="@/images/Genbruge.svg" />
-        </router-link>
+    <router-link to="/genbrugeComponent" @click="setActive('genbrugeComponent')">
+      <img :class="{ active: activeImage === 'genbrugeComponent' }" src="@/images/Genbruge.svg" />
+    </router-link>
 
-        <router-link to="/foodWaste" @click="setActive('foodWaste')">
-          <img :class="{ active: activeImage === 'foodWaste' }" src="@/images/Madspile.svg" />
-        </router-link>
-    </v-container>
-
+    <router-link to="/foodWaste" @click="setActive('foodWaste')">
+      <img :class="{ active: activeImage === 'foodWaste' }" src="@/images/Madspile.svg" />
+    </router-link>
+  </v-container>
 </template>
 
 <script>
@@ -24,9 +23,6 @@ import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'MenuComponent',
-  components: {
-
-  },
   setup() {
     const activeImage = ref('');
 
@@ -41,28 +37,21 @@ export default defineComponent({
   },
 });
 </script>
+
 <style scoped>
 
-
-.v-container {
-  padding: 0;
-}
 
 .anden-nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #fff;
   height: 92px;
-  border-radius: 18px;
-  border: solid 1px #e4e5e4;
-  box-shadow: #fff 2px 2px 2px;
-  opacity: 0.9;
+  margin-top: 100px; /* Adjust this value based on the height of your fixed nav */
 }
 
 .anden-nav img {
-  width: 50px;
-  padding-top: 5px;
+  margin-top: 70px;
+  margin-bottom: 70px;
   transition: all 0.3s ease;
 }
 
@@ -72,4 +61,3 @@ export default defineComponent({
   box-shadow: 0 0 10px rgba(189, 185, 185, 0.5);
 }
 </style>
-

@@ -1,23 +1,22 @@
 <template>
   <NavComponent />
   <MenuComponent />
-  <v-app class="transport" id="transport">
-    <v-container fluid fill-height :style="{ backgroundColor: '#E9E5E5', padding: '14px'}">
+  <v-app >
+    <v-container fluid fill-height  :style="{ backgroundColor: '#000', width: '100%', padding: '24px'}">
+      <br/>
       <v-col cols="12" md="8" lg="4" class="text-center">
-        <h2 class="question">Hvordan har din transport været?</h2>
+        <h2 class="question">Transport</h2>
       </v-col>
-
-      <CheckList :style="{ backgroundColor: '#8981A8', width: '100%' }"
+      <CheckList
+        :style="{ width: '100%' }"
         :checklistItems="checklistItems"
         :selectedItems="selectedItems"
         @update:selectedItems="updateSelectedItems"
       />
-
-      <ArrowComponent nextRoute="/elUse" previousRoute="/userPage" />
-
-
+     <ArrowComponent nextRoute="/elUse" previousRoute="/userPage" />
     </v-container>
   </v-app>
+
 </template>
 
 <script>
@@ -74,57 +73,15 @@ export default {
 
 <style scoped>
 .v-container {
-  padding: 0;
+  background: #000;
+  color: #8981A8;
 }
 
 .question {
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 24px;
+  color: #8981A8;
 }
-.selected {
-  background-color: #4CAF50;
-  color: white;
-}
-.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
-.award-badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px auto;
-  border-radius: 25px;
-  opacity: 0.9;
-  background: #8981A8;
-}
-.award-badge .v-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-.v-list-item-subtitle {
-  font-size: 16px;
-  color: #000;
-}
-.v-list-item-title {
-  font-size: 20px;
-  color: black;
-  margin-top: 5px;
-}
-.v-list-item-action {
-  width: 0;
-  height: 0;
-}
-.v-list-item--density-default.v-list-item--one-line {
-  padding: 15px;
-  margin-top: 8px;
-  margin-bottom: 12px;
-  justify-content: center;
-}
-.v-list{
-  padding: 0;
-}
+
 </style>

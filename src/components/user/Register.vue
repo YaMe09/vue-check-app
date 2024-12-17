@@ -44,7 +44,7 @@
       :style="{ backgroundColor: 'rgb(62, 122, 0)', width: '100%', color:'#fff', maxWidth:'400px' }"
       type="submit"
     >
-      Register
+      Opret
     </v-btn>
   </form>
 </template>
@@ -111,7 +111,7 @@ export default {
         store.commit('setUserInfo', data.user);
 
         alert('Registration successful!');
-        router.push('/transportComponent');
+        router.push('/forside');
       } catch (error) {
         alert(error.message || 'Registration failed. Please try again.');
       }
@@ -129,7 +129,7 @@ export default {
 .register {
   display: flex;
   min-height: 100vh;
-  background-image: url(../images/forside.svg);
+  background: #000 url(@/images/forside.svg);
   background-size: cover;
   background-position: center;
   justify-content: center;
@@ -148,6 +148,7 @@ form {
 h2 {
   text-align: center; /* Center the heading */
   margin-bottom: 1.5rem; /* Space below the heading */
+  color: #fff;
 }
 
 input {
@@ -171,6 +172,7 @@ input:not([type='submit']) {
 input:focus:not([type='submit']) {
   opacity: 1;
 }
+
 input::placeholder {
   color: rgb(62, 122, 0);
 }

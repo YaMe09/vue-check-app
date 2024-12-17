@@ -1,88 +1,49 @@
 <template>
-  <v-app class="app">
-    <v-container v-if="showWelcome" class="forside" fill-height>
-      <v-row align="center" justify="center">
-        <v-col>
-          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-          <h1 :style="{ fontWeight: '700' }">Velkommen</h1>
-          <br />
-          <br /><br /><br /><br />
-          <p :style="{ fontWeight: '700' }">Gør noget for at passe på fremtiden</p>
-          <br /><br /><br />
-          <v-btn @click="navigateToLogin" class="login-button">Login</v-btn>
-          <v-btn @click="navigateToRegister" class="register-button">Registrer</v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
-    <router-view v-if="!showWelcome"></router-view>
-  </v-app>
+  <router-view />
 </template>
 
 <script>
-import { ref, provide } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 
 export default {
   name: 'App',
   setup() {
-    const showWelcome = ref(true);
-    const name = ref('');
-    const password = ref('');
+    const isUserLoggedIn = ref(false);
     const router = useRouter();
-    provide('name', name);
-    provide('password', password);
 
-    const hideWelcome = () => {
-      showWelcome.value = false;
-    };
+    // Watch for changes in login status and handle redirects
+    watch(isUserLoggedIn, (newValue) => {
+      if (newValue) {
+        router.push('/frontPage');
+      } else {
+        router.push('/login');
+      }
+    });
 
-    const navigateToLogin = () => {
-      hideWelcome();
-      router.push('/login');
-    };
-
-    const navigateToRegister = () => {
-      hideWelcome();
-      router.push('/register');
+    const logout = () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userName');
+      isUserLoggedIn.value = false;
+      router.push('/login'); // Ensure this redirects to the login page
     };
 
     return {
-      showWelcome,
-      hideWelcome,
-      name,
-      password,
-      navigateToLogin,
-      navigateToRegister
+      isUserLoggedIn,
+      logout,
+      router,
     };
   },
 };
 </script>
 
-<style scoped>
-.v-container {
+<style>
+body {
+  background-color: black;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
   padding: 0;
-}
-.forside {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: #fff;
-  background-image: url('./images/forside.svg');
-  background-size: cover;
-  background-position: center;
-  margin-top: 60px;
-}
-
-h1, p {
-  color: black;
-}
-
-.login-button, .register-button {
-  font-size: 1em;
-  color: #fff;
-  background-color: #4caf50;
-  border-radius: 5px;
-  padding: 0.5em 1em;
-  width: 100%;
-  margin: 20px;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 </style>

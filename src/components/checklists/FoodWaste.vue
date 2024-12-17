@@ -1,20 +1,19 @@
 <template>
   <NavComponent />
   <MenuComponent />
-  <v-app class="foodwaste" id="foodwaste">
-    <v-container fluid fill-height align="center" justify="center" :style="{ backgroundColor: '#E9E5E5', padding: '24px'}">
+  <v-app >
+    <v-container fluid fill-height  :style="{ backgroundColor: '#000', width: '100%', padding: '24px'}">
+      <br/>
       <v-col cols="12" md="8" lg="4" class="text-center">
-        <h2 class="question">Hvordan har dit madspild været?</h2>
+        <h2 class="question">Mad</h2>
       </v-col>
-
-      <CheckList  :style="{ backgroundColor: '#E59182', width: '100%' }"
+      <CheckList
+        :style="{ width: '100%' }"
         :checklistItems="checklistItems"
         :selectedItems="selectedItems"
         @update:selectedItems="updateSelectedItems"
       />
-
       <ArrowComponent nextRoute="/userPage" previousRoute="/genbrugeComponent" />
-
     </v-container>
   </v-app>
 </template>
@@ -73,64 +72,20 @@ export default {
 </script>
 
 <style scoped>
+
+
+
 .v-container {
-  justify-content: center;
-}
-.award-badge{
-background: #E59182;
-border-radius: 25px;
-}
-
-.foodwaste {
-  background-color: #E9E5E5;
-  width: 100%;
-  padding: 0;
-
-
-
+  background: #000;
+  color: #E59182;
 }
 
 .question {
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 24px;
-  color: black;
+  color: #E59182;
 }
 
-.checklist-card {
-  margin: 3px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
 
-.checklist-card.selected {
-  background-color: #4caf50;
-  color: white;
-}
-
-.v-row {
-  margin-top: 20px;
-}
-
-.custom-checkbox input:checked ~ .v-input__control .v-input__slot {
-  background-color: #a6c9a8;
-}
-
-.v-label {
-  color: black;
-}
-.v-container[data-v-6c44f5ed] {
-  background: #E59182;
- padding: 0;
-}
-div[data-v-617dcb71] {
-  background: #E59182;
-  padding: 0;
-}
-.v-col-12{
-  background: #E59182;
-  border-radius: 25px;
-}
 </style>
