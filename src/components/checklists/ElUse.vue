@@ -1,18 +1,19 @@
 <template>
   <NavComponent />
   <MenuComponent />
-  <v-app class="energy-consumption" id="energy-consumption">
-    <v-container  :style="{ backgroundColor: '#E9E5E5', borderRadius: '25px',  width: '395px', marginBottom: '24px'}">
-
+  <v-app >
+    <v-container fluid fill-height  :style="{ backgroundColor: '#000', width: '100%', padding: '24px'}">
+      <br/>
       <v-col cols="12" md="8" lg="4" class="text-center">
-        <h2 class="question">Hvordan har dit El-forbrug været?</h2>
+        <h2 class="question">Forbrug</h2>
       </v-col>
-
-      <CheckList :style="{ backgroundColor: '#32898F', width: '100%' }"
+      <CheckList
+        :style="{ width: '100%' }"
         :checklistItems="checklistItems"
         :selectedItems="selectedItems"
         @update:selectedItems="updateSelectedItems"
       />
+
 
       <ArrowComponent nextRoute="/genbrugeComponent" previousRoute="/transportComponent" />
 
@@ -76,44 +77,15 @@ export default {
 
 <style scoped>
 .v-container {
-  justify-content: center;
-  margin: 10px;
-  background-color: #E9E5E5;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.energy-consumption {
-  background-color: #E9E5E5;
-  width: 100%;
-  padding: 0;
+  background: #000;
+  color: #1E7F85;
 }
 
 .question {
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 24px;
-  color: black;
+  color: #1E7F85;
 }
 
-.checklist-card {
-  margin: 3px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.checklist-card.selected {
-  background-color: #4caf50;
-  color: white;
-}
-
-.v-row {
-  margin-top: 20px;
-}
-
-.v-label {
-  color: black;
-}
 </style>

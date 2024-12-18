@@ -1,83 +1,86 @@
 <template>
-  <div v-if="isVisible">
+  <NavComponent />
+  <v-container fluid fill-height align="center" justify="center" :style="{backgroundColor:'#000', width: '100%', padding: '24px'}" class="info">
+    <br/><br/>
+    <h1>Velkommen</h1>
     <br/>
-    <img src="../images/gg_close.svg" class="left" @click="closeInfo" />
-    <v-container class="info">
-      <br/><br/><br/><br/>
-      <v-card-text>
-        Selv små skridt mod elbesparing kan have stor betydning for en bæredygtig fremtid. Vælg energibesparende løsninger i din hverdag og vær med til at bekæmpe klimaforandringer!
-      </v-card-text>
-      <v-spacer></v-spacer>
+    <h3>{{ userName }}</h3>
+    <br/>
+    <img src="@/images/EcoVaner.svg" alt="Logo" :style="{ width: '200px' }" />
+    <br/>
+    <v-card-text>
+      - gør bæredygtige vaner lette som en leg!
+    </v-card-text>
+    <v-spacer></v-spacer>
 
-      <v-card-text>
-        Du sparer 800 kg CO2/år
-      </v-card-text>
-      <v-spacer></v-spacer>
+    <v-card-text>
+     Vores mission er at skabe en grønnere fremtid. Vi tror på, at små vaner gør en stor forskel, når vi alle bidrager til miljøet.
+    </v-card-text>
+    <v-spacer></v-spacer>
 
-      <v-card-text>
-        Dit valg af bæredygtig transport gør en stor forskel! Hver lille handling tæller i beskyttelsen af vores planet og fremtiden.
-      </v-card-text>
-      <v-spacer></v-spacer>
+    <v-card-text>
+      At ændre adfærd og skabe nye vaner kan være en udfordring – men det er her, EcoVaner gør en forskel.
+    </v-card-text>
+    <v-spacer></v-spacer>
 
-      <v-card-text>
-        Dine indkøb kan støtte bæredygtighed. Vælg lokale, genbrugte eller sæsonbestemte produkter. Hver handling tæller; lad os skabe en grønnere fremtid sammen!
-      </v-card-text>
+    <v-card-text>
+      ✔️ Tjek ind dagligt: Udfør en bæredygtig handling, og giv den et flueben.
+    </v-card-text>
 
-      <v-spacer></v-spacer>
-      <v-card-text>
-        Du sparer 0,5 til 1 ton CO2 om året
-      </v-card-text>
-      <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+    <v-card-text>
+     🌱 Tjen dråber: Jo flere handlinger, du gennemfører, jo højere niveau opnår du.
+    </v-card-text>
+    <v-spacer></v-spacer>
 
-      <v-card-text>
-        Lad os skabe en bæredygtig fremtid én skive brød ad gangen!
-      </v-card-text>
-      <v-spacer></v-spacer>
+    <v-card-text>
+      🌳 Se dit træ vokse: Brug dråberne til at vande dit træ, der symboliserer din voksende vane. Når træet er fuldt udvokset, er handlingerne blevet en naturlig del af din hverdag.
+    </v-card-text>
+    <v-spacer></v-spacer>
 
-      <v-card-text>
-        Du sparer 200-300 kg CO2 om året
-      </v-card-text>
-      <v-spacer></v-spacer>
-    </v-container>
-  </div>
+    <v-card-text>
+      Tag det første skridt mod en bæredygtig fremtid – start i dag med EcoVaner!
+    </v-card-text>
+    <v-spacer></v-spacer>
+  </v-container>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { defineComponent, onMounted, computed } from 'vue';
+import { useStore } from 'vuex';
+import NavComponent from '../navigation/NavComponent.vue';
 
 export default defineComponent({
   name: 'InfoComponent',
+  components: {
+    NavComponent,
+  },
   setup() {
-    const router = useRouter();
-    const isVisible = ref(true);
+    const store = useStore();
+    const userName = computed(() => store.getters.getUserInfo.name);
 
-    const closeInfo = () => {
-      isVisible.value = false;
-      router.push('/transportComponent');
-    };
+    onMounted(() => {
+      store.dispatch('fetchUserInfo');
+    });
 
     return {
-      isVisible,
-      closeInfo,
+      userName,
     };
   },
 });
 </script>
 
 <style scoped>
-
 .info {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
-  color: #000000;
-  background-image: url('../images/forside.svg');
+  color: #fff;
+  background: #000 url('../images/forside.svg');
   background-size: cover;
   background-position: center;
-  margin-top: 100px;
 }
-.left {
-  float: right;
-  margin-right: 25px;
+
+h1 {
+  font-weight: bolder;
 }
 </style>

@@ -1,23 +1,22 @@
 <template>
   <NavComponent />
   <MenuComponent />
-  <v-app class="transport" id="transport">
-    <v-container fluid fill-height :style="{ backgroundColor: '#E9E5E5', borderRadius: '25px', padding: '24px', width: '395px', marginBottom: '24px'}">
+  <v-app  style="background-color: #000; height: 100vh;">
+    <v-container fluid fill-height  :style="{ backgroundColor: '#000', width: '100%', padding: '24px'}">
+      <br/>
       <v-col cols="12" md="8" lg="4" class="text-center">
-        <h2 class="question">Hvordan har din transport været?</h2>
+        <h2 class="question">Transport</h2>
       </v-col>
-
-      <CheckList :style="{ backgroundColor: '#8981A8', width: '100%' }"
+      <CheckList
+        :style="{ width: '100%' }"
         :checklistItems="checklistItems"
         :selectedItems="selectedItems"
         @update:selectedItems="updateSelectedItems"
       />
-
-      <ArrowComponent nextRoute="/elUse" previousRoute="/userPage" />
-
-
+     <ArrowComponent nextRoute="/elUse" previousRoute="/userPage" />
     </v-container>
   </v-app>
+
 </template>
 
 <script>
@@ -74,47 +73,16 @@ export default {
 
 <style scoped>
 .v-container {
-  justify-content: center;
-  margin: 10px;
-  padding: 20px;
-  border-radius: 10px;
-}
+  background: #000;
+  color: #8981A8;
 
-.transport {
-  background-color: #E9E5E5;
-  width: 100%;
-  padding: 0;
 }
 
 .question {
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 24px;
-  color: black;
+  color: #8981A8;
 }
 
-.checklist-card {
-  margin: 3px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.checklist-card.selected {
-  background-color: #4caf50;
-  color: white;
-}
-
-.v-row {
-  margin-top: 20px;
-}
-
-.custom-checkbox input:checked ~ .v-input__control .v-input__slot {
-  background-color: #a6c9a8;
-}
-
-.v-label {
-  color: black;
-}
 </style>

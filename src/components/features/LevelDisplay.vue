@@ -1,7 +1,7 @@
 <template>
   <div class="user-info-display">
     <div class="level-display">
-      <p class="info-text">Level: {{ userLevel }}</p>
+      <p class="info-text">Level : {{ userLevel }}</p>
     </div>
     <div class="points-display">
       <img src="@/images/drop.svg" alt="Points" class="drop-icon" />
@@ -36,10 +36,10 @@ export default {
   text-align: center;
   font-weight: bold;
   margin-top: 10px;
-  color: black;
-  background-color: #F7F6F6;
-  padding:20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: white;
+  background-color: black;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(227, 222, 222, 0.1);
 }
 
 .level-display {
@@ -47,7 +47,7 @@ export default {
 }
 
 .info-text {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: lighter;
 }
 
@@ -57,13 +57,13 @@ export default {
 }
 
 .drop-icon {
-  width: 24px;
+  width: 28px;
   height: 24px;
   margin-right: 8px;
 }
 
 .points-text {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
 }
 </style>

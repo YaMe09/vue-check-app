@@ -1,5 +1,6 @@
 <template>
-  <v-container :style="{ backgroundColor: '#E9E5E5' }" class="front-page" align="center">
+  <NavComponent/>
+  <v-container :style="{ backgroundColor: '#0000' }" class="front-page" align="center">
     <br />
     <!-- Logo træ -->
     <v-container class="logo-container">
@@ -7,23 +8,19 @@
     </v-container>
 
     <!-- Centered welcome text -->
-    <h1 class="welcome-text">Velkommen til</h1>
+    <h1 class="welcome-text">Velkommen Tilbage</h1>
     <br>
     <!-- New "Din score" section with image underneath -->
     <div class="score-section">
-      <h2 class="score-text">{{ user.name }}</h2>
+      <h2 class="score-text">{{ userName }}</h2>
       <br />
 
-      <p class="description-text">Level: {{ user.level }}</p>
-      <p class="description-text">Dropper: {{ user.points }}</p>
+      <LevelDisplay  style="background-color: #fff; color: #000;"/> <!-- Use LevelDisplay component here -->
       <br />
     </div>
 
      <!-- Subtitle text -->
      <h3 class="subtitle-text">Gør bæredygtige vaner let som en leg</h3>
-
-    <!-- Centered secondary logo -->
-    <img :src="levelImage" alt="level img" class="secondary-logo" />
 
     <!-- New section with question text and button -->
     <v-container class="check-habits-section">
@@ -39,9 +36,15 @@
 import { useRouter } from 'vue-router';
 import { ref, onMounted, watch } from 'vue';
 import { useStore } from 'vuex';
+import NavComponent from '../navigation/NavComponent.vue';
+import LevelDisplay from '../features/LevelDisplay.vue'; // Import LevelDisplay component
 
 export default {
   name: 'FrontPage',
+  components: {
+    NavComponent,
+    LevelDisplay, // Register LevelDisplay component
+  },
   setup() {
     const router = useRouter();
     const store = useStore();
@@ -56,8 +59,12 @@ export default {
             'x-access-token': localStorage.getItem('token')
           }
         });
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Error fetching user data: ${errorText}`);
+        }
         const data = await response.json();
-        store.dispatch('setUserInfo', data);
+        store.commit('setUserInfo', data);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -74,22 +81,22 @@ export default {
     const updateLevelImage = () => {
       switch (user.value.level) {
         case 1:
-          levelImage.value ('@/Images/frø Level 1.png');
+          levelImage.value = '@/Images/frø Level 1.png';
           break;
         case 2:
-          levelImage.value ('@/Images/root Level 2.png');
+          levelImage.value = '@/Images/root Level 2.png';
           break;
         case 3:
-          levelImage.value ('@/Images/tree Level 3.png');
+          levelImage.value = '@/Images/tree Level 3.png';
           break;
         default:
-          levelImage.value ('@/Images/tree Level 4.png');
+          levelImage.value = '@/Images/tree Level 4.png';
       }
     };
 
     watch(() => user.value.level, updateLevelImage);
 
-    return { goToMainSite, user, levelImage };
+    return { goToMainSite, user, levelImage, userName: user.value.name, userLevel: user.value.level, userPoints: user.value.points };
   },
 };
 </script>
@@ -124,10 +131,19 @@ export default {
 .welcome-text {
   font-size: 40px;
   margin-top: 10px;
+  color: #Ffff; /* Change color for h1 */
+}
+
+.score-text {
+  font-size: 35px;
+  font-weight: bold;
+  color: #3E7A00; /* Change color for h2 */
 }
 
 .subtitle-text {
   font-size: 16px;
+  font-weight:normal;
+  color: #fff;
 }
 
 .points-value, .points-text {
@@ -178,10 +194,6 @@ export default {
 .description-text {
   font-size: 24px;
   font-weight: 600;
-}
-.score-text {
-  font-size: 28px;
-  font-weight: bold;
 }
 ul {
   list-style-type: none;

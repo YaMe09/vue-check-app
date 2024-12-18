@@ -1,85 +1,150 @@
 <template>
-  <v-app>
-    <v-app-bar app color="#E9E5E5" flat>
-      <v-btn icon @click.stop="drawer = !drawer">
+  <div class="nav-container">
+    <!-- Top navbar -->
+    <header class="nav-bar">
+      <button class="burger-button" @click="drawer = true">
         <img src="@/images/hamburger-button.svg" alt="Menu" class="burger-icon" />
-      </v-btn>
-      <v-toolbar-title>App Title</v-toolbar-title>
-      <v-spacer></v-spacer>
+      </button>
       <LevelDisplay />
-    </v-app-bar>
+    </header>
 
-    <v-navigation-drawer v-model="drawer" app temporary>
-      <v-list>
-        <v-list-item @click="$router.push('/frontPage')">
-          <v-list-item-title>Front Page</v-list-item-title>
-        </v-list-item>
-        <v-list-item @click="$router.push('/info')">
-          <v-list-item-title>Info</v-list-item-title>
-        </v-list-item>
-        <v-list-item @click="$router.push('/transportComponent')">
-          <v-list-item-title>Transport</v-list-item-title>
-        </v-list-item>
-        <v-list-item @click="$router.push('/elUse')">
-          <v-list-item-title>El Use</v-list-item-title>
-        </v-list-item>
-        <v-list-item @click="$router.push('/genbrugeComponent')">
-          <v-list-item-title>Genbruge</v-list-item-title>
-        </v-list-item>
-        <v-list-item @click="$router.push('/foodWaste')">
-          <v-list-item-title>Food Waste</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
-    
-  </v-app>
+    <!-- Slide-in menu -->
+    <div v-if="drawer" class="menu-overlay" @click="drawer = false">
+      <aside class="menu-content" @click.stop>
+        <button class="close-button" @click="drawer = false">X</button>
+        <ul>
+          <li @click="navigateTo('/frontPage')">Min side</li>
+          <li @click="navigateTo('/userPage')">Min træ</li>
+          <li @click="navigateTo('/info')">Info</li>
+          <li @click="logout">Log ud</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
 </template>
 
 <script>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import LevelDisplay from '../features/LevelDisplay.vue';
 
 export default {
   name: 'NavComponent',
-  components: {
-    LevelDisplay,
-  },
+  components: { LevelDisplay },
   setup() {
     const drawer = ref(false);
+    const router = useRouter();
+
+    const navigateTo = (path) => {
+      drawer.value = false;
+      router.push(path);
+    };
+
+    const logout = () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userName');
+      router.push('/');
+    };
 
     return {
       drawer,
+      navigateTo,
+      logout
     };
-  },
+  }
 };
 </script>
 
 <style scoped>
-.v-container {
-  padding: 0;
+/* 🔹 Nav-bar stil */
+.nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  padding: 15px;
+  z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  color: white;
+  height: 56px;
+}
+
+.burger-button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .burger-icon {
-  width: 24px;
-  height: 24px;
+  width: 100%;
 }
 
-.v-application--wrap {
-  margin: 0 !important;
-  padding: 0 !important;
+.LevelDisplay {
+  margin-left: auto;
 }
 
-.v-application__wrap {
-  min-height: 100vh !important; /* Sørg for, at applikationen fylder hele højden */
-}
-
-.v-navigation-drawer {
-  height: 100vh !important; /* Sørg for, at navigationen fylder hele højden */
-}
-
-.anden-nav {
+/* 🔹 Slide-in menu */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
+  align-items: stretch;
+  z-index: 1000;
+}
+
+.menu-content {
+  width: 80%;
+  max-width: 300px;
+  height: 100vh;
+  background-color: black;
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #4caf50;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 50px; /* Plads til X-knappen */
+}
+
+li {
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-bottom: 1px solid #4caf50;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .menu-content {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 </style>

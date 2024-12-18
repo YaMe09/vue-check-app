@@ -1,16 +1,16 @@
 <template>
-  <v-container :style="{ backgroundColor: '#E9E5E5' }">
+  <NavComponent/>
+  <v-container :style="{ backgroundColor: '#000' }">
     <br/>
     <br/><br/><br/><br/>
     <h1 class="score-title">Dagens score</h1>
     <br/>
-    <v-container fluid fill-height :style="{ backgroundColor: '#E9E5E5', width: '100%', padding: '25px' }">
+    <v-container fluid fill-height :style="{ backgroundColor: '', width: '100%', padding: '25px' }">
       <v-col cols="12" md="8" lg="4" class="text-center">
-        <h2 class="question">Opsummering af dine point</h2>
-        <p class="description-text">Velkommen til din side {{ userName }}</p>
-        <p class="total-points">Samlede droper: {{ totalPoints }}</p>
+        <h2 class="question">Godt Klaret </h2>
+        <p class="description-text"> {{ userName }}</p>
 
-        <LevelDisplay /> <!-- Tilføj denne linje -->
+        <LevelDisplay />
       </v-col>
     </v-container>
 
@@ -19,8 +19,6 @@
         <v-col cols="12" class="text-center">
           <v-btn rounded="xl" size="x-large" @click="saveUserData" class="home-button" block :style="{background:'#3E7A00'}">Gem data</v-btn><br/>
           <v-btn rounded="xl" size="x-large" @click="showUserList" class="back-button" block outlined :style="{border:'5px solid #3E7A00'}">Show users</v-btn><br/>
-          <v-btn v-if="totalPoints >= requiredPoints" rounded="xl" size="x-large" @click="navigateToTransport" class="next-button" block :style="{background:'#3E7A00'}">Spil videre</v-btn><br/>
-          <v-btn rounded="xl" size="x-large" @click="logout" class="logout-button" block outlined :style="{border:'5px solid #3E7A00'}">Log ud</v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -31,10 +29,12 @@
 import LevelDisplay from '../features/LevelDisplay.vue'; // Importer UserLevelDisplay
 import { inject } from 'vue';
 import { useRouter } from 'vue-router';
+import NavComponent from '../navigation/NavComponent.vue';
 
 export default {
   components: {
-    LevelDisplay // Registrer UserLevelDisplay
+    LevelDisplay,
+    NavComponent, // Registrer UserLevelDisplay
   },
   setup() {
     const name = inject('name');
@@ -44,11 +44,9 @@ export default {
   },
   data() {
     return {
-      requiredPoints: 100, // Krav til point for at gå videre til næste niveau
+      requiredPoints: 500, // Krav til point for at gå videre til næste niveau
       token: localStorage.getItem('token') || '', // Hent token fra localStorage
       userName: localStorage.getItem('userName') || '', // Hent brugerens navn fra localStorage
-      checklists: [], // Tilføj denne linje
-      selectedCategory: '', // Standard kategori
       levelUpdated: false // Tilføj denne linje for at spore om niveauet er opdateret
     };
   },
@@ -63,24 +61,7 @@ export default {
       return this.$store.getters.getUserInfo.level; // Get user level from Vuex store
     }
   },
-  created() {
-    this.fetchChecklists(); // Tilføj denne linje
-  },
   methods: {
-    async fetchChecklists() {
-      try {
-        const response = await fetch(`http://localhost:3000/api/checklists/${this.selectedCategory}/${this.userLevel}`, {
-          method: 'GET',
-          headers: {
-            'x-access-token': this.token
-          }
-        });
-        const data = await response.json();
-        this.checklists = data;
-      } catch (error) {
-        console.error('Error fetching checklists:', error);
-      }
-    },
     async saveUserData() {
       try {
         const payload = {
@@ -89,7 +70,7 @@ export default {
         };
         console.log('Sending payload to backend:', payload); // Debug-udskrift
 
-        const response = await fetch('http://localhost:3000/api/auth/user/points', {
+        const response = await fetch('http://localhost:3000/api/user/points', {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -113,7 +94,6 @@ export default {
           this.$store.commit('incrementUserLevel');
           this.levelUpdated = true; // Marker niveauet som opdateret
           alert('Du har nået det nødvendige antal point og er nu på næste niveau!');
-          this.fetchChecklists(); // Hent nye tjeklister for næste niveau
         } catch (error) {
           console.error('Error updating level:', error);
           alert('Der opstod en fejl ved opdatering af niveau.');
@@ -122,9 +102,6 @@ export default {
         this.levelUpdated = false; // Nulstil markeringen, hvis pointene falder under kravet
         alert(`Du skal have mindst ${this.requiredPoints} point for at gå videre til næste niveau.`);
       }
-    },
-    navigateToTransport() {
-      this.$router.push('/transportComponent');
     },
     showUserList() {
       this.$router.push('/userList');
@@ -142,8 +119,12 @@ export default {
 .score-title {
   text-align: center;
   font-weight: 700;
+  color: aliceblue;
 }
-
+.description-text{
+  color: #3E7A00;
+  font-size: 30px;
+}
 .score-value {
   text-align: center;
   font-weight: 700;
@@ -151,7 +132,7 @@ export default {
 }
 
 .carbon-reduction {
-  background-image: url('../Images/Vector 1.svg');
+  background-image: url('@/Images/Vector 1.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -163,15 +144,5 @@ export default {
   gap: 1em;
 }
 
-.back-button,
-.home-button,
-.next-button,
-.logout-button {
-  font-size: 1em;
-  color: #fff;
-  background-color: #4caf50;
-  border-radius: 5px;
-  padding: 0.5em 1em;
-  width: 100%;
-}
+
 </style>
