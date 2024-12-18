@@ -8,15 +8,14 @@
     </v-container>
 
     <!-- Centered welcome text -->
-    <h1 class="welcome-text">Velkommen til</h1>
+    <h1 class="welcome-text">Velkommen Tilbage</h1>
     <br>
     <!-- New "Din score" section with image underneath -->
     <div class="score-section">
       <h2 class="score-text">{{ userName }}</h2>
       <br />
 
-      <p class="description-text">Level: {{ userLevel }}</p>
-      <p class="description-text">Dropper: {{ userPoints }}</p>
+      <LevelDisplay  style="background-color: #fff; color: #000;"/> <!-- Use LevelDisplay component here -->
       <br />
     </div>
 
@@ -38,11 +37,13 @@ import { useRouter } from 'vue-router';
 import { ref, onMounted, watch } from 'vue';
 import { useStore } from 'vuex';
 import NavComponent from '../navigation/NavComponent.vue';
+import LevelDisplay from '../features/LevelDisplay.vue'; // Import LevelDisplay component
 
 export default {
   name: 'FrontPage',
   components: {
     NavComponent,
+    LevelDisplay, // Register LevelDisplay component
   },
   setup() {
     const router = useRouter();
@@ -142,6 +143,7 @@ export default {
 .subtitle-text {
   font-size: 16px;
   font-weight:normal;
+  color: #fff;
 }
 
 .points-value, .points-text {

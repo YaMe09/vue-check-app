@@ -1,22 +1,19 @@
 <template>
-  <v-container :style="{ padding: '22px', width: '100%', maxWidth: '380px'}">
-
-
-          <v-list-item
-            v-for="item in checklistItems"
-            :key="item.id"
-            @click="selectItem(item)"
-            :class="{ 'selected': localSelectedItems.includes(item), 'disabled': localSelectedItems.length && !localSelectedItems.includes(item) }"
-            :style="itemStyle(item)"
-            class="checklist-card"
-          >
-            <v-list-item-content>
-              <v-list-item-title>{{ item.name }}</v-list-item-title>
-            </v-list-item-content>
-
-          </v-list-item>
-
-
+  <v-container :style="{ padding: '22px', width: '100%', maxWidth: '380px' }">
+    <v-list>
+      <v-list-item
+        v-for="item in checklistItems"
+        :key="item.id"
+        @click="selectItem(item)"
+        :class="{ 'selected': localSelectedItems.includes(item), 'disabled': localSelectedItems.length && !localSelectedItems.includes(item) }"
+        :style="itemStyle(item)"
+        class="checklist-card"
+      >
+        <v-list-item-content>
+          <v-list-item-title>{{ item.name }}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
   </v-container>
 </template>
 

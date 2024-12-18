@@ -1,7 +1,7 @@
 <template>
   <NavComponent />
   <MenuComponent />
-  <v-app >
+  <v-app  style="background-color: #000; height: 100vh;">
     <v-container fluid fill-height  :style="{ backgroundColor: '#000', width: '100%', padding: '24px'}">
       <br/>
       <v-col cols="12" md="8" lg="4" class="text-center">
@@ -75,6 +75,7 @@ export default {
 .v-container {
   background: #000;
   color: #8981A8;
+
 }
 
 .question {
