@@ -58,7 +58,7 @@ import { useStore } from 'vuex';
 export default {
   name: 'LogIn',
   components: {
-   
+
   },
   setup() {
     const name = ref('');
