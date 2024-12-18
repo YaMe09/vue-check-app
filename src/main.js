@@ -6,9 +6,17 @@ import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
+
 import TransportComponent from './components/checklists/TransportComponent.vue';
 import InfoComponent from './components/pages/InfoComponent.vue';
 import GenbrugeComponent from './components/checklists/GenbrugeComponent.vue';
+
+
+import TransportComponent from './components/checklists/TransportComponent.vue';
+import InfoComponent from './components/pages/InfoComponent.vue';
+import GenbrugeComponent from './components/checklists/GenbrugeComponent.vue';
+import PointDisplay from './components/features/PointDisplay.vue';
+
 import FrontPage from './components/pages/FrontPage.vue';
 import CheckList from './components/features/CheckList.vue';
 import FoodWaste from './components/checklists/FoodWaste.vue';
@@ -20,7 +28,11 @@ import LogIn from './components/user/LogIn.vue';
 import LevelDisplay from './components/features/LevelDisplay.vue';
 import MenuComponent from './components/navigation/MenuComponent.vue';
 import Register from './components/user/Register.vue';
+
 import Forside from './components/pages/forside.vue';
+
+import Forside from './components/pages/Forside.vue';
+
 
 const vuetify = createVuetify({
   components,
